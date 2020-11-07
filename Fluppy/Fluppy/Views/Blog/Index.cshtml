@@ -1,0 +1,143 @@
+﻿@model Fluppy.ViewModels.VmBlog
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header image -->
+
+@{
+    Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+<!-- header image end-->
+
+<!-- blog area -->
+
+<section class="blog-area">
+    <div class="container">
+
+        <div class=" section-text pb-2" id="blog-text">Blog</div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-lg-3 blog-search">
+                <form method="post">
+                    <input type="text" placeholder="Search for ..." name="searchText">
+                    <button type="submit" value="" style="outline:none; position: absolute; left: 85%; width: 43px; border: none; background: transparent;">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+
+            <!-- blog container -->
+
+            <div class="col-12 col-sm-12 col-lg-9">
+
+                @{
+                    Html.RenderPartial("~/Views/Shared/_BlogPartial.cshtml", Model.Blogs);
+                }
+                <div class="col-12">
+                    <div class="col-4 col-sm-4 ml-auto mr-auto mt-4">
+                        <div class="pagination">
+                            <ul>
+                                @if (Model.Currentpage > 1)
+                                {
+                                    <li><a href="@Url.Action("Index","Blog", new { page=(Model.Currentpage==1?1:Model.Currentpage-1)})"><i class="fas fa-arrow-left"></i> </a></li>
+                                }
+                                @for (int i = 1; i <= Model.PageCount; i++)
+                                {
+
+                                    <li class="@(Model.Currentpage==i?"currentpage":"")"><a href="@Url.Action("Index","Blog",new{page=i})"> @i </a></li>
+                                }
+                                @if (Model.Currentpage < Model.PageCount)
+                                {
+                                    <li><a href="@Url.Action("Index","Blog", new { page=(Model.Currentpage==Model.PageCount?Model.PageCount:Model.Currentpage+1)})"><i class="fas fa-arrow-right"></i> </a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- blog right sidebar-->
+
+            <div class="col-12 col-sm-12 col-lg-3 right-sidebar-blog">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-lg-12 blog-category-area">
+                                <h6>Blog Category</h6>
+                                <ul>
+                                    @foreach (var item in Model.BlogCategories)
+                                    {
+                                        <li><a href="@Url.Action("Index","Blog", new {CatId=item.Id })"><i class="@item.Icon"></i> @item.Name</a></li>
+                                    }
+                                   
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-12 col-lg-12">
+
+                        <!-- adopt area -->
+
+                        <section class="adopt-area pt-3">
+                            <div class="container">
+                                <div class="section-text" id="adopt-text">They wait yours</div>
+                                <div class="row">
+                                    @foreach (var item in Model.Adopts)
+                                    {
+                                        <div class="col-12 col-sm-12 mt-5 ">
+                                            <div class="adopt-card">
+                                                <div class="image-box adopt-blog">
+
+                                                    <img src="~/Uploads/@item.SlideAdopts.FirstOrDefault().Image" alt="adopt" style="width:90%;">
+                                                    <div class="adopt-social-blog">
+                                                        <ul>
+                                                            @foreach (var social in item.AdoptSocials)
+                                                            {
+                                                                <li><a href="@social.Link"><i class="@social.SocialType.Icon" aria-hidden="true"></i></a></li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="content-adopt text-center">
+                                                    <h3 class="adopt-pet-name">@item.Name</h3>
+                                                    <ul>
+                                                        <li><span> Gender :</span> @item.Gender.Name</li>
+                                                        <li><span> Neutered :</span> @item.Neutered</li>
+                                                        <li><span> Age :</span> @item.Age</li>
+
+                                                        <li><a href="@Url.Action("AdoptDetails","Adopt",new { Id=item.Id})">Adopt me</a></li>
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                    </div>
+                                <div class="col-12 col-sm-12 col-lg-12" style="margin-top: 50px; padding: 0;">
+                                    <img src="~/Public/assets/img/adopt-shop-lettering-background_106024-75.jpg"
+                                         alt="adopt me" class="adopt-me">
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- blog right sidebar end-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- blog area end -->
+<!-- subscribe -->
+
+@{
+    Html.RenderPartial("~/Views/Shared/_SubscribePartial.cshtml");
+}
+
+<!-- subscribe-end -->

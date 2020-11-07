@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Fluppy.Models.HeaderImage>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-2 ml-4 mr-4">
+    <h4>Header Images</h4>
+
+    <h2 style="font-weight:bold;">Index</h2>
+
+    <a class=" btn btn-primary" href="@Url.Action("Create","HeaderImage") ">Create New</a>
+    <table class="table table-responsive ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Page)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Page)
+                </td>
+                <td>
+                    <img src="~/Uploads/@item.Image" alt="@item.Image" width="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    <a class="update-link btn btn-primary" href="@Url.Action("Update","HeaderImage", new { id = item.Id }) "><i class="fas fa-edit"></i></a>
+                    <a class="update-link btn btn-info" href="@Url.Action("Details","HeaderImage", new { id = item.Id }) "><i class="fas fa-info-circle"></i></a>
+                    <a class="update-link btn btn-danger" href="@Url.Action("Delete","HeaderImage", new { id = item.Id }) " onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

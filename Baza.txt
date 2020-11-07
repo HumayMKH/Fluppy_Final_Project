@@ -1,0 +1,996 @@
+USE [master]
+GO
+/****** Object:  Database [DB_Fluppy]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE DATABASE [DB_Fluppy]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'DB_Fluppy', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\DATA\DB_Fluppy.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'DB_Fluppy_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\DATA\DB_Fluppy_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [DB_Fluppy] SET COMPATIBILITY_LEVEL = 130
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [DB_Fluppy].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [DB_Fluppy] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [DB_Fluppy] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [DB_Fluppy] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [DB_Fluppy] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [DB_Fluppy] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [DB_Fluppy] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [DB_Fluppy] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [DB_Fluppy] SET  MULTI_USER 
+GO
+ALTER DATABASE [DB_Fluppy] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [DB_Fluppy] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [DB_Fluppy] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [DB_Fluppy] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [DB_Fluppy] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [DB_Fluppy] SET QUERY_STORE = OFF
+GO
+USE [DB_Fluppy]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+USE [DB_Fluppy]
+GO
+/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Admins]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Admins](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[Name] [nvarchar](30) NOT NULL,
+	[Surname] [nvarchar](30) NOT NULL,
+	[Username] [nvarchar](30) NOT NULL,
+	[Password] [nvarchar](250) NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[MainAdmin] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_dbo.Admins] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AdoptRules]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AdoptRules](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Content] [ntext] NOT NULL,
+ CONSTRAINT [PK_dbo.AdoptRules] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Adopts]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Adopts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](30) NOT NULL,
+	[Neutered] [bit] NOT NULL,
+	[Age] [int] NOT NULL,
+	[Address] [nvarchar](150) NOT NULL,
+	[Breed] [nvarchar](50) NOT NULL,
+	[Vaccinated] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[GenderId] [int] NOT NULL,
+	[PetSizeId] [int] NOT NULL,
+	[AgeTypeId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.Adopts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AdoptSocials]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AdoptSocials](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Link] [nvarchar](150) NOT NULL,
+	[SocialTypeId] [int] NOT NULL,
+	[AdoptId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.AdoptSocials] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AgeTypes]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AgeTypes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](10) NOT NULL,
+ CONSTRAINT [PK_dbo.AgeTypes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Appointments]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Appointments](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Phone] [nvarchar](30) NOT NULL,
+	[Email] [nvarchar](30) NOT NULL,
+	[DateAndTime] [datetime] NOT NULL,
+	[Message] [nvarchar](500) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ServiceId] [int] NULL,
+	[AdoptId] [int] NULL,
+ CONSTRAINT [PK_dbo.Appointments] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Articles]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Articles](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](150) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[Content] [ntext] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[AdminId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.Articles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BlogCategories]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BlogCategories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Icon] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_dbo.BlogCategories] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Blogs]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Blogs](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](150) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[Date] [datetime] NOT NULL,
+	[Content] [ntext] NOT NULL,
+	[ViewCount] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[BlogCategoryId] [int] NOT NULL,
+	[AdminId] [int] NOT NULL,
+	[ImageBig] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.Blogs] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CommentReplies]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CommentReplies](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CommentId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Reply] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.CommentReplies] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Comments]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Comments](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Content] [nvarchar](500) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[BlogId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.Comments] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Contacts]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Contacts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Fullname] [nvarchar](50) NOT NULL,
+	[Phone] [nvarchar](30) NOT NULL,
+	[Email] [nvarchar](30) NOT NULL,
+	[Message] [nvarchar](500) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_dbo.Contacts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Genders]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Genders](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](10) NOT NULL,
+ CONSTRAINT [PK_dbo.Genders] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HeaderImages]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HeaderImages](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Page] [nvarchar](20) NULL,
+	[Image] [nvarchar](150) NULL,
+	[Title] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_dbo.HeaderImages] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HomeSettings]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HomeSettings](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](30) NOT NULL,
+	[Logo] [nvarchar](150) NULL,
+	[FooterLogo] [nvarchar](150) NULL,
+	[Email] [nvarchar](30) NOT NULL,
+	[Phone] [nvarchar](30) NOT NULL,
+	[Address] [nvarchar](50) NOT NULL,
+	[StartTime] [datetime] NOT NULL,
+	[EndTime] [datetime] NOT NULL,
+	[SatStartTime] [datetime] NOT NULL,
+	[SatEndTime] [datetime] NOT NULL,
+	[FooterContent] [nvarchar](150) NOT NULL,
+	[CopyRight] [nvarchar](100) NOT NULL,
+ CONSTRAINT [PK_dbo.HomeSettings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HomeSliders]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HomeSliders](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[Content] [nvarchar](200) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_dbo.HomeSliders] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HomeSocials]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HomeSocials](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Link] [nvarchar](150) NOT NULL,
+	[SocialTypeId] [int] NOT NULL,
+	[HomeSettingId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.HomeSocials] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PetSizes]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PetSizes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Size] [nvarchar](15) NOT NULL,
+ CONSTRAINT [PK_dbo.PetSizes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PetTypes]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PetTypes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Type] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_dbo.PetTypes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PetTypeToProducts]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PetTypeToProducts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[PetTypeId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.PetTypeToProducts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Positions]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Positions](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_dbo.Positions] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ProductCategories]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProductCategories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_dbo.ProductCategories] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ProductImages]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProductImages](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[ProductId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.ProductImages] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Products]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Products](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Price] [money] NOT NULL,
+	[Desc] [nvarchar](300) NOT NULL,
+	[Quantity] [money] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[ProductCategoryId] [int] NOT NULL,
+	[AdminId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.Products] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Sales]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Sales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Quantity] [money] NOT NULL,
+	[Price] [money] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[ProductId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.Sales] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Services]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Services](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[Content] [nvarchar](300) NOT NULL,
+	[PriceDayBig] [money] NOT NULL,
+	[PriceWeekBig] [money] NOT NULL,
+	[PriceMonthBig] [money] NOT NULL,
+	[PriceDaySmall] [money] NOT NULL,
+	[PriceWeekSmall] [money] NOT NULL,
+	[PriceMonthSmall] [money] NOT NULL,
+ CONSTRAINT [PK_dbo.Services] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SlideAdopts]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SlideAdopts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[AdoptId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.SlideAdopts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SocialTypes]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SocialTypes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](15) NOT NULL,
+	[Icon] [nvarchar](20) NOT NULL,
+ CONSTRAINT [PK_dbo.SocialTypes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Subscribes]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Subscribes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Email] [nvarchar](30) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_dbo.Subscribes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Teams]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Teams](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Fullname] [nvarchar](50) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[PositionId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.Teams] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TeamSocials]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TeamSocials](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Link] [nvarchar](150) NOT NULL,
+	[SocialTypeId] [int] NOT NULL,
+	[TeamId] [int] NOT NULL,
+	[TeamSocial_Id] [int] NULL,
+ CONSTRAINT [PK_dbo.TeamSocials] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Testimonials]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Testimonials](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Image] [nvarchar](150) NULL,
+	[Content] [nvarchar](500) NOT NULL,
+	[Fullname] [nvarchar](50) NOT NULL,
+	[Position] [nvarchar](50) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_dbo.Testimonials] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 11/4/2020 4:52:02 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](30) NOT NULL,
+	[Surname] [nvarchar](30) NOT NULL,
+	[Username] [nvarchar](30) NULL,
+	[Password] [nvarchar](250) NULL,
+	[Email] [nvarchar](30) NOT NULL,
+	[Phone] [nvarchar](30) NOT NULL,
+	[City] [nvarchar](30) NOT NULL,
+	[Address] [nvarchar](150) NOT NULL,
+	[PostCode] [nvarchar](10) NOT NULL,
+	[Notes] [nvarchar](300) NULL,
+	[IsRegistered] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AgeTypeId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AgeTypeId] ON [dbo].[Adopts]
+(
+	[AgeTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_GenderId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_GenderId] ON [dbo].[Adopts]
+(
+	[GenderId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_PetSizeId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_PetSizeId] ON [dbo].[Adopts]
+(
+	[PetSizeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AdoptId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AdoptId] ON [dbo].[AdoptSocials]
+(
+	[AdoptId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_SocialTypeId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_SocialTypeId] ON [dbo].[AdoptSocials]
+(
+	[SocialTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AdoptId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AdoptId] ON [dbo].[Appointments]
+(
+	[AdoptId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ServiceId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_ServiceId] ON [dbo].[Appointments]
+(
+	[ServiceId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AdminId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AdminId] ON [dbo].[Articles]
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AdminId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AdminId] ON [dbo].[Blogs]
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_BlogCategoryId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_BlogCategoryId] ON [dbo].[Blogs]
+(
+	[BlogCategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_CommentId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_CommentId] ON [dbo].[CommentReplies]
+(
+	[CommentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_UserId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[CommentReplies]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_BlogId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_BlogId] ON [dbo].[Comments]
+(
+	[BlogId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_UserId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[Comments]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_HomeSettingId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_HomeSettingId] ON [dbo].[HomeSocials]
+(
+	[HomeSettingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_SocialTypeId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_SocialTypeId] ON [dbo].[HomeSocials]
+(
+	[SocialTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_PetTypeId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_PetTypeId] ON [dbo].[PetTypeToProducts]
+(
+	[PetTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ProductId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_ProductId] ON [dbo].[PetTypeToProducts]
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ProductId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_ProductId] ON [dbo].[ProductImages]
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AdminId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AdminId] ON [dbo].[Products]
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ProductCategoryId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_ProductCategoryId] ON [dbo].[Products]
+(
+	[ProductCategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ProductId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_ProductId] ON [dbo].[Sales]
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_UserId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[Sales]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_AdoptId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AdoptId] ON [dbo].[SlideAdopts]
+(
+	[AdoptId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_PositionId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_PositionId] ON [dbo].[Teams]
+(
+	[PositionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_SocialTypeId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_SocialTypeId] ON [dbo].[TeamSocials]
+(
+	[SocialTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_TeamId]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_TeamId] ON [dbo].[TeamSocials]
+(
+	[TeamId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_TeamSocial_Id]    Script Date: 11/4/2020 4:52:02 PM ******/
+CREATE NONCLUSTERED INDEX [IX_TeamSocial_Id] ON [dbo].[TeamSocials]
+(
+	[TeamSocial_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[BlogCategories] ADD  DEFAULT ('') FOR [Icon]
+GO
+ALTER TABLE [dbo].[Adopts]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Adopts_dbo.AgeTypes_AgeTypeId] FOREIGN KEY([AgeTypeId])
+REFERENCES [dbo].[AgeTypes] ([Id])
+GO
+ALTER TABLE [dbo].[Adopts] CHECK CONSTRAINT [FK_dbo.Adopts_dbo.AgeTypes_AgeTypeId]
+GO
+ALTER TABLE [dbo].[Adopts]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Adopts_dbo.Genders_GenderId] FOREIGN KEY([GenderId])
+REFERENCES [dbo].[Genders] ([Id])
+GO
+ALTER TABLE [dbo].[Adopts] CHECK CONSTRAINT [FK_dbo.Adopts_dbo.Genders_GenderId]
+GO
+ALTER TABLE [dbo].[Adopts]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Adopts_dbo.PetSizes_PetSizeId] FOREIGN KEY([PetSizeId])
+REFERENCES [dbo].[PetSizes] ([Id])
+GO
+ALTER TABLE [dbo].[Adopts] CHECK CONSTRAINT [FK_dbo.Adopts_dbo.PetSizes_PetSizeId]
+GO
+ALTER TABLE [dbo].[AdoptSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AdoptSocials_dbo.Adopts_AdoptId] FOREIGN KEY([AdoptId])
+REFERENCES [dbo].[Adopts] ([Id])
+GO
+ALTER TABLE [dbo].[AdoptSocials] CHECK CONSTRAINT [FK_dbo.AdoptSocials_dbo.Adopts_AdoptId]
+GO
+ALTER TABLE [dbo].[AdoptSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AdoptSocials_dbo.SocialTypes_SocialTypeId] FOREIGN KEY([SocialTypeId])
+REFERENCES [dbo].[SocialTypes] ([Id])
+GO
+ALTER TABLE [dbo].[AdoptSocials] CHECK CONSTRAINT [FK_dbo.AdoptSocials_dbo.SocialTypes_SocialTypeId]
+GO
+ALTER TABLE [dbo].[Appointments]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Appointments_dbo.Adopts_AdoptId] FOREIGN KEY([AdoptId])
+REFERENCES [dbo].[Adopts] ([Id])
+GO
+ALTER TABLE [dbo].[Appointments] CHECK CONSTRAINT [FK_dbo.Appointments_dbo.Adopts_AdoptId]
+GO
+ALTER TABLE [dbo].[Appointments]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Appointments_dbo.Services_ServiceId] FOREIGN KEY([ServiceId])
+REFERENCES [dbo].[Services] ([Id])
+GO
+ALTER TABLE [dbo].[Appointments] CHECK CONSTRAINT [FK_dbo.Appointments_dbo.Services_ServiceId]
+GO
+ALTER TABLE [dbo].[Articles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Articles_dbo.Admins_AdminId] FOREIGN KEY([AdminId])
+REFERENCES [dbo].[Admins] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Articles] CHECK CONSTRAINT [FK_dbo.Articles_dbo.Admins_AdminId]
+GO
+ALTER TABLE [dbo].[Blogs]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Blogs_dbo.Admins_AdminId] FOREIGN KEY([AdminId])
+REFERENCES [dbo].[Admins] ([Id])
+GO
+ALTER TABLE [dbo].[Blogs] CHECK CONSTRAINT [FK_dbo.Blogs_dbo.Admins_AdminId]
+GO
+ALTER TABLE [dbo].[Blogs]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Blogs_dbo.BlogCategories_BlogCategoryId] FOREIGN KEY([BlogCategoryId])
+REFERENCES [dbo].[BlogCategories] ([Id])
+GO
+ALTER TABLE [dbo].[Blogs] CHECK CONSTRAINT [FK_dbo.Blogs_dbo.BlogCategories_BlogCategoryId]
+GO
+ALTER TABLE [dbo].[CommentReplies]  WITH CHECK ADD  CONSTRAINT [FK_dbo.CommentReplies_dbo.Comments_CommentId] FOREIGN KEY([CommentId])
+REFERENCES [dbo].[Comments] ([Id])
+GO
+ALTER TABLE [dbo].[CommentReplies] CHECK CONSTRAINT [FK_dbo.CommentReplies_dbo.Comments_CommentId]
+GO
+ALTER TABLE [dbo].[CommentReplies]  WITH CHECK ADD  CONSTRAINT [FK_dbo.CommentReplies_dbo.Users_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[CommentReplies] CHECK CONSTRAINT [FK_dbo.CommentReplies_dbo.Users_UserId]
+GO
+ALTER TABLE [dbo].[Comments]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Comments_dbo.Blogs_BlogId] FOREIGN KEY([BlogId])
+REFERENCES [dbo].[Blogs] ([Id])
+GO
+ALTER TABLE [dbo].[Comments] CHECK CONSTRAINT [FK_dbo.Comments_dbo.Blogs_BlogId]
+GO
+ALTER TABLE [dbo].[Comments]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Comments_dbo.Users_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[Comments] CHECK CONSTRAINT [FK_dbo.Comments_dbo.Users_UserId]
+GO
+ALTER TABLE [dbo].[HomeSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.HomeSocials_dbo.HomeSettings_HomeSettingId] FOREIGN KEY([HomeSettingId])
+REFERENCES [dbo].[HomeSettings] ([Id])
+GO
+ALTER TABLE [dbo].[HomeSocials] CHECK CONSTRAINT [FK_dbo.HomeSocials_dbo.HomeSettings_HomeSettingId]
+GO
+ALTER TABLE [dbo].[HomeSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.HomeSocials_dbo.SocialTypes_SocialTypeId] FOREIGN KEY([SocialTypeId])
+REFERENCES [dbo].[SocialTypes] ([Id])
+GO
+ALTER TABLE [dbo].[HomeSocials] CHECK CONSTRAINT [FK_dbo.HomeSocials_dbo.SocialTypes_SocialTypeId]
+GO
+ALTER TABLE [dbo].[PetTypeToProducts]  WITH CHECK ADD  CONSTRAINT [FK_dbo.PetTypeToProducts_dbo.PetTypes_PetTypeId] FOREIGN KEY([PetTypeId])
+REFERENCES [dbo].[PetTypes] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[PetTypeToProducts] CHECK CONSTRAINT [FK_dbo.PetTypeToProducts_dbo.PetTypes_PetTypeId]
+GO
+ALTER TABLE [dbo].[PetTypeToProducts]  WITH CHECK ADD  CONSTRAINT [FK_dbo.PetTypeToProducts_dbo.Products_ProductId] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Products] ([Id])
+GO
+ALTER TABLE [dbo].[PetTypeToProducts] CHECK CONSTRAINT [FK_dbo.PetTypeToProducts_dbo.Products_ProductId]
+GO
+ALTER TABLE [dbo].[ProductImages]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ProductImages_dbo.Products_ProductId] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Products] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ProductImages] CHECK CONSTRAINT [FK_dbo.ProductImages_dbo.Products_ProductId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Products_dbo.Admins_AdminId] FOREIGN KEY([AdminId])
+REFERENCES [dbo].[Admins] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_dbo.Products_dbo.Admins_AdminId]
+GO
+ALTER TABLE [dbo].[Products]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Products_dbo.ProductCategories_ProductCategoryId] FOREIGN KEY([ProductCategoryId])
+REFERENCES [dbo].[ProductCategories] ([Id])
+GO
+ALTER TABLE [dbo].[Products] CHECK CONSTRAINT [FK_dbo.Products_dbo.ProductCategories_ProductCategoryId]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Sales_dbo.Products_ProductId] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Products] ([Id])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [FK_dbo.Sales_dbo.Products_ProductId]
+GO
+ALTER TABLE [dbo].[Sales]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Sales_dbo.Users_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[Sales] CHECK CONSTRAINT [FK_dbo.Sales_dbo.Users_UserId]
+GO
+ALTER TABLE [dbo].[SlideAdopts]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SlideAdopts_dbo.Adopts_AdoptId] FOREIGN KEY([AdoptId])
+REFERENCES [dbo].[Adopts] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[SlideAdopts] CHECK CONSTRAINT [FK_dbo.SlideAdopts_dbo.Adopts_AdoptId]
+GO
+ALTER TABLE [dbo].[Teams]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Teams_dbo.Positions_PositionId] FOREIGN KEY([PositionId])
+REFERENCES [dbo].[Positions] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Teams] CHECK CONSTRAINT [FK_dbo.Teams_dbo.Positions_PositionId]
+GO
+ALTER TABLE [dbo].[TeamSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.TeamSocials_dbo.SocialTypes_SocialTypeId] FOREIGN KEY([SocialTypeId])
+REFERENCES [dbo].[SocialTypes] ([Id])
+GO
+ALTER TABLE [dbo].[TeamSocials] CHECK CONSTRAINT [FK_dbo.TeamSocials_dbo.SocialTypes_SocialTypeId]
+GO
+ALTER TABLE [dbo].[TeamSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.TeamSocials_dbo.Teams_TeamId] FOREIGN KEY([TeamId])
+REFERENCES [dbo].[Teams] ([Id])
+GO
+ALTER TABLE [dbo].[TeamSocials] CHECK CONSTRAINT [FK_dbo.TeamSocials_dbo.Teams_TeamId]
+GO
+ALTER TABLE [dbo].[TeamSocials]  WITH CHECK ADD  CONSTRAINT [FK_dbo.TeamSocials_dbo.TeamSocials_TeamSocial_Id] FOREIGN KEY([TeamSocial_Id])
+REFERENCES [dbo].[TeamSocials] ([Id])
+GO
+ALTER TABLE [dbo].[TeamSocials] CHECK CONSTRAINT [FK_dbo.TeamSocials_dbo.TeamSocials_TeamSocial_Id]
+GO
+USE [master]
+GO
+ALTER DATABASE [DB_Fluppy] SET  READ_WRITE 
+GO

@@ -1,0 +1,7 @@
+﻿@model Fluppy.Models.HeaderImage
+
+<section class="header-image">
+    <div class="image-area" style="background-image: url('/Uploads/@(Model.Image!=null?Model.Image:"")');">
+        <p class="header-image-text">@(Model.Title!=null?Model.Title:"")</p>
+    </div>
+</section>

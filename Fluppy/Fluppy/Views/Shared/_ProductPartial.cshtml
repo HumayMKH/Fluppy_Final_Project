@@ -1,0 +1,33 @@
+﻿@model List<Fluppy.Models.Product>
+@{ 
+    List<string> WishList = ViewBag.WishList;
+}
+@foreach (var item in Model)
+{
+    <div class="col-6 col-md-4 col-lg-2 pt-4 @(item.Quantity==0?"sold-item":"")">
+        <div class="product">
+            <div class="product-image">
+                <img src="~/Uploads/@(item.ProductImages != null ?item.ProductImages.FirstOrDefault().Image: "")" alt="Pet bed">
+                <div class="list">
+                    <a href="#" data-id="@item.Id" class="list-icon addWishList @(WishList!=null?(WishList.Contains(item.Id.ToString())==true?"addedWishlist":""):"")" title="Add to wishlist">
+                        <i class="fa fa-heart" aria-hidden="true" style="margin-bottom:16px;"></i>
+                    </a>
+
+                    <a href="@Url.Action("ProductDetails", "Shop", new { Id = item.Id })" class="list-icon" title="Add to cart" style="padding:6px;">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            @if (item.Quantity == 0)
+            {
+                <strong class="text-uppercase" style="color: red; position: absolute; top: 33%; left: 14%; font-size: 25px;">sold out!</strong>
+            }
+            <div class="product-content text-center">
+                <h5>@(item.Name != null ? item.Name: "")</h5>
+               
+                <h6 style="margin-bottom:15px;">$ @(item.Price != null ? item.Price.ToString("0.00") : "")</h6>
+                <a href="@Url.Action("ProductDetails", "Shop", new { Id = item.Id })" class="product-details-button ">Details</a>
+            </div>
+        </div>
+    </div>
+}

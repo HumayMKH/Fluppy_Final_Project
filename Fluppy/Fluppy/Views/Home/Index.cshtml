@@ -1,0 +1,142 @@
+﻿@model Fluppy.ViewModels.VmHome
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header slider -->
+
+<section class="header-slide">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators"
+                style="border-radius: 100%; width: 10px;height: 10px;color:#DA9F59;background-color: #DA9F59;"
+                data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators"
+                style="border-radius: 100%; width: 10px;height: 10px;color:#DA9F59;background-color: #DA9F59;"
+                data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators"
+                style="border-radius: 100%; width: 10px;height: 10px;color:#DA9F59;background-color: #DA9F59;"
+                data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            @{int i = 0; }
+            @foreach (var item in Model.HomeSliders)
+            {
+                i++;
+                <div class="carousel-item @(i==1?"active":"")">
+                    <div class="banner"
+                         style="background-image: url('/Uploads/@item.Image'); width: 100%;height: 100%;">
+                    </div>
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class=" zoomIn">@item.Title</h2>
+                        <p class=" fadeIn">
+                            @item.Content
+                        </p>
+                        <a href="@Url.Action("Index", "Contact")" class="zoomIn appointment">MAKE AN APPOINTMENT</a>
+                        <a class="zoomIn learn-more" href="@Url.Action("Index", "About")">LEARN MORE</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+
+<!-- header slider end-->
+<!-- service area -->
+
+<section class="service-area">
+    @{
+        Html.RenderPartial("~/Views/Shared/_ServicePartial.cshtml", Model.Services);
+    }
+</section>
+
+<!-- service area end-->
+<!-- Shop area -->
+
+<section class="products-area-home">
+    <div class="container">
+        <div class=" section-text" id="products-text">Our Products</div>
+        <div class="row">
+            @{
+                Html.RenderPartial("~/Views/Shared/_ProductPartial.cshtml", Model.Products);
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Shop area end-->
+<!-- blog area -->
+
+<section class="blog-area">
+    <div class="container">
+
+        <div class=" section-text pb-4" id="blog-text">Blog</div>
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                @{
+                    Html.RenderPartial("~/Views/Shared/_BlogPartial.cshtml", Model.Blogs);
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- blog area end-->
+<!-- testimonials area-->
+
+<section class="testimonial-area">
+    <div id="testimonials">
+        <div class="container">
+            <h3 class="text-center customers-say">What our customers say</h3>
+            <div class="owl-carousel owl-theme ">
+                @foreach (var item in Model.Testimonials)
+                {
+                    <div class="testimonials-box item">
+                        <div class="testimonial-photo">
+                            <img src="~/Uploads/@item.Image" alt="testimonial-photo">
+                        </div>
+                        <p style="font-style: italic; ">
+                           @item.Content
+                        </p>
+                        <p style="letter-spacing:3px">
+                            <strong style="text-transform: uppercase;">@item.Fullname</strong><br>
+                            <span>@item.Position</span>
+                        </p>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- testimonials area end-->
+<!-- adopt area -->
+
+<section class="adopt-area">
+    <div class="container">
+        <div class="section-text" id="adopt-text">They wait yours</div>
+        <div class="row">
+            @{
+                Html.RenderPartial("~/Views/Shared/_AdoptPartial.cshtml", Model.Adopts);
+            }
+        </div>
+    </div>
+</section>
+
+<!-- adopt area end-->
+
+<!-- subscribe -->
+
+@{
+    Html.RenderPartial("~/Views/Shared/_SubscribePartial.cshtml");
+}
+<!-- subscribe-end -->

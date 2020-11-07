@@ -1,0 +1,160 @@
+﻿@model Fluppy.ViewModels.VmService
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- header image -->
+
+@{
+    Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+
+<!-- header image end-->
+<!-- Shop area -->
+
+<section class="product-info">
+
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 col-sm-12 product-container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6  col-lg-4 product-info-container">
+                        <img src="~/Uploads/@(Model.Service!=null?Model.Service.Image:"")" alt="product" style="width:100%;">
+                    </div>
+                    <div class="col-sm-12 col-md-6  col-lg-4 product-info-container">
+                        <div class="product-info-box">
+                            <h4 class="product-name">@(Model.Service!=null?Model.Service.Title:"")</h4>
+
+                            <p class="product-information">
+                                @(Model.Service!=null?Model.Service.Content:"")
+                            </p>
+                            <p style="font-weight: bold;font-size: 25px;text-align:center;">Price</p>
+                            <div class="row price-area">
+                                <div class="col-4 col-sm-4">
+
+                                </div>
+                                <div class="col-4 col-sm-4">
+                                    <span class="type-pet">Big dog</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+                                    <span class="type-pet">Small dog and cat</span>
+                                </div>
+                            </div>
+
+                            <div class="row price-area">
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-service">Day</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+
+                                    <span class="price-design">@((Model.Service!=null?Model.Service.PriceDayBig:0).ToString("0.0")) $</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+
+                                    <span class="price-design">@((Model.Service!=null?Model.Service.PriceDaySmall:0).ToString("0.0")) $</span>
+                                </div>
+                            </div>
+                            <div class="row price-area">
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-service">Week</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-design">@((Model.Service!=null?Model.Service.PriceWeekBig:0).ToString("0.0")) $</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-design">@((Model.Service!=null?Model.Service.PriceWeekSmall:0).ToString("0.0")) $</span>
+                                </div>
+                            </div>
+                            <div class="row price-area">
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-service">Month</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-design">@((Model.Service!=null?Model.Service.PriceMonthBig:0).ToString("0.0")) $</span>
+                                </div>
+                                <div class="col-4 col-sm-4">
+                                    <span class="price-design">@((Model.Service!=null?Model.Service.PriceMonthSmall:0).ToString("0.0")) $</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col--sm-12 col-md-12 col-lg-4  product-info-container">
+                        <div class="col-12 col-sm-12 pt-3">
+                            <div class="row">
+                                <form method="post" style="width:100%;" autocomplete="off" action="@Url.Action("ServiceMessage","Service")">
+
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.Name, new { htmlAttributes = new { @placeholder = "Fullname", @class = "form-controls" } })
+
+                                        @Html.ValidationMessageFor(m => m.Appointment.Name, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.Phone, new { htmlAttributes = new { @placeholder = "Phone", @class = "form-controls" } })
+                                        @Html.ValidationMessageFor(m => m.Appointment.Phone, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.Email, new { htmlAttributes = new { @placeholder = "Email", @class = "form-controls", @type = "email" } })
+                                        @Html.ValidationMessageFor(m => m.Appointment.Email, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @*<input type="text" id="DateAndTime" name="datetime" placeholder="Date and time">*@
+                                        @Html.EditorFor(model => model.Appointment.DateAndTimeNotMapped, new { htmlAttributes = new { @class = "form-controls", @id = "DateAndTime", placeholder = "Date and time" } })
+
+                                        @Html.ValidationMessageFor(m => m.Appointment.DateAndTimeNotMapped, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 Appointment-size-input-service">
+                                        <span style="color:#495057;">Your Message :</span>
+
+                                        @Html.TextAreaFor(model => model.Appointment.Message, new { @class = "form-controls", @style = "width:100%;height:100px;outline:none;padding:10px 15px;" })
+                                        @Html.ValidationMessageFor(m => m.Appointment.Message, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 Appointment-size-input-service">
+                                        <input type="hidden" name="ServiceId" value="@Model.Service.Id" />
+                                    </div>
+                                        <div class="col-12 col-sm-12 contact-size-input-service">
+                                            <button type="submit" style="outline: none;width: 100%;padding: 10px 15px;
+                                         outline: none;background: #377b00;color: white;border: 2px solid #377b00">
+                                                Appointment
+                                            </button>
+
+                                        </div>
+                                </form>
+                                <div style="padding:0 15px;">
+                                    @if (Session["Required"] != null)
+                                    {
+                                        Session["Required"] = null;
+                                        <div class="alert alert-warning">
+                                            Please fill all inputs!
+                                        </div>
+                                    }
+
+                                    @if (Session["Success"] != null)
+                                    {
+                                        Session["Success"] = null;
+                                        <div class="alert alert-success">
+                                            Your message sent successfully!
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Shop area end-->

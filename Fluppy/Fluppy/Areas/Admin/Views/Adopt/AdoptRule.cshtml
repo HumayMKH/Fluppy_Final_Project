@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Fluppy.Models.AdoptRule>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-2 ml-4 mr-4">
+    <h4>Adopt Rule</h4>
+
+    <h2 style="font-weight:bold;">Index</h2>
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.Content)
+                </td>
+                <td>
+                    <a class="update-link btn btn-primary" href="@Url.Action("RuleUpdate","Adopt", new { id = item.Id }) "><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

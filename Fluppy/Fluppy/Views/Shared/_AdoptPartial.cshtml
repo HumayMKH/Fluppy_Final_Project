@@ -1,0 +1,35 @@
+﻿@model List<Fluppy.Models.Adopt>
+
+@foreach (var item in Model)
+{
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-5 ">
+        <div class="adopt-card">
+            <div class="image-box adopt-section">
+                    <img src="~/Uploads/@item.SlideAdopts.FirstOrDefault().Image" alt="adopt" style="width:90%;">
+                <div class="adopt-social">
+                    <ul>
+                        @foreach (var social in item.AdoptSocials)
+                        {
+                            <li><a href="@social.Link"><i class="@social.SocialType.Icon" aria-hidden="true"></i></a></li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <div class="content-adopt text-center">
+                <h3 class="adopt-pet-name">@item.Name</h3>
+                <ul>
+                    <li><span> Gender : </span> @item.Gender.Name</li>
+                    <li><span> Neutered : </span> @item.Neutered</li>
+                    <li><span> Age : </span> @item.Age @item.AgeType.Name</li>
+
+                    <li><a href="@Url.Action("AdoptDetails","Adopt",new { Id=item.Id})">Adopt me</a></li>
+                </ul>
+
+            </div>
+
+
+        </div>
+    </div>
+}
+

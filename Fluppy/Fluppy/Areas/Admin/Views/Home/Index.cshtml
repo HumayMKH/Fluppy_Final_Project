@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Fluppy.Models.HomeSetting>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+    <div class="ml-4 mr-4">
+        <h4>Home Setting</h4>
+
+        <h2 style="font-weight:bold;">Index</h2>
+        <table class="table table-responsive">
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Logo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FooterLogo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SatStartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SatEndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FooterContent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CopyRight)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="~/Uploads/@item.Logo" alt="@item.Logo" width="100" />
+                    </td>
+                    <td>
+                        <img src="~/Uploads/@item.FooterLogo" alt="@item.FooterLogo" width="100" />
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SatStartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SatEndTime)
+                    </td>
+                    <td>
+                        @(item.FooterContent.Length>100?item.FooterContent.Substring(0,100)+"...":item.FooterContent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CopyRight)
+                    </td>
+                    <td>
+                        <a class="update-link btn btn-primary" href="@Url.Action("Update","Home", new { id = item.Id }) "><i class="fas fa-edit"></i></a>
+                        <a class="update-link btn btn-info" href="@Url.Action("Details","Home", new { id = item.Id }) "><i class="fas fa-info-circle"></i></a>
+                        <a class="update-link btn btn-danger" href="@Url.Action("Delete","Home", new { id = item.Id }) " onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

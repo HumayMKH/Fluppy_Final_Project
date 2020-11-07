@@ -1,0 +1,86 @@
+﻿@model Fluppy.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ml-4 mt-2">
+    <h4>Product</h4>
+
+    <h2 style="font-weight:bold;">Details</h2>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            Pet Types
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.PetTypeToProducts)
+            {
+                <span>@item.PetType.Type; </span>
+            }
+        </dd>
+        <dt>
+            Images
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.ProductImages)
+            {
+                <img src="~/Uploads/@item.Image" alt="@item.Image" width="100" />
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin.Name)
+        </dd>
+    </dl>
+    <p>
+        <a href="@Url.Action("Update", "Product", new { id = Model.Id })" class="btn btn-info  mb-2">Update</a>
+
+        <a href="@Url.Action("Index", "Product")" class="btn btn-danger  mb-2 ml-2">Back To List</a>
+    </p>
+</div>

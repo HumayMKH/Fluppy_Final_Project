@@ -1,0 +1,135 @@
+﻿@model Fluppy.Models.Adopt
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <form method="post" enctype="multipart/form-data" class="mt-2 ml-4">
+        <div class="form-horizontal">
+            <h4>Adopt</h4>
+
+            <h2 style="font-weight:bold;">Update</h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Neutered, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Neutered)
+                        @Html.ValidationMessageFor(model => model.Neutered, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Breed, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Breed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Breed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Vaccinated, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Vaccinated)
+                        @Html.ValidationMessageFor(model => model.Vaccinated, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Model.SlideAdopts != null)
+                    {
+                        foreach (var item in Model.SlideAdopts)
+                        {
+                            <img src="~/Uploads/@item.Image" alt="@item.Image" width="100" />
+                        }
+                    }
+
+                    @Html.TextBoxFor(model => model.ImageFile, null, new { @class = "form-control", @type = "file", @multiple = "multiple" })
+                    @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Gender</label>
+                    <select class="form-control" name="GenderId">
+                        <option value="value">Choose</option>
+                        @foreach (var item in ViewBag.Gender)
+                        {
+                            <option value="@item.Id" @(Model.GenderId == item.Id ? "selected" : "")>@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Pet Size</label>
+                    <select class="form-control" name="PetSizeId">
+                        <option value="value">Choose</option>
+                        @foreach (var item in ViewBag.PetSize)
+                        {
+                            <option value="@item.Id" @(Model.PetSizeId == item.Id ? "selected" : "")>@item.Size</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Age Type</label>
+                    <select class="form-control" name="AgeTypeId">
+                        <option value="value">Choose</option>
+                        @foreach (var item in ViewBag.AgeType)
+                        {
+                            <option value="@item.Id" @(Model.AgeTypeId == item.Id ? "selected" : "")>@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action("Index", "Adopt")" class="btn btn-danger mb-2">Back To List</a>
+                </div>
+            </div>
+        </div>
+    </form>

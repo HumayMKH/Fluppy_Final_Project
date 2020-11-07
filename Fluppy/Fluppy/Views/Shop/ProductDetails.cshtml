@@ -1,0 +1,118 @@
+﻿@model Fluppy.ViewModels.VmProduct
+@using Fluppy.Models
+@{
+    ViewBag.Title = "Index";
+
+    List<string> WishList = ViewBag.WishList;
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header image -->
+
+@{
+    Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+<!-- header image end-->
+<!-- Shop area -->
+
+<section class="product-info">
+    <img class="product-img" src="~/Public/assets/img/product/dog_PNG50392.png" alt="dog">
+    <img class="product-img-cat" src="~/Public/assets/img/product/cat_PNG50534.png" alt="cat">
+    <div class="container">
+        <div class="row ">
+            <div class="col-8 product-container" style="margin:auto">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 product-info-container">
+                        <div class="sp-wrap">
+                            @foreach (var item in Model.Product.ProductImages)
+                            {
+                                <a href="~/Uploads/@item.Image">
+                                    <img src="~/Uploads/@item.Image" alt="Pet bed">
+                                </a>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12 col-md-6 product-info-container">
+                        <div class="product-info-box">
+                            <h4 class="product-name">@(Model.Product!=null?Model.Product.Name:"")"</h4>
+                            <h5 style="font-weight: 500;">Product info</h5>
+                            <p class="product-information">
+                                @(Model.Product!=null?Model.Product.Desc:"")"
+                            </p>
+                            <div class="row">
+                                <div class="col-6 col-sm-6">
+                                    <span style="font-weight: bold;font-size: 18px;">Quantity : </span>
+
+                                    <input class="productCount" type="number" min="1" max="@(Model.Product!=null?Model.Product.Quantity:0)" value="1" style="padding-left: 10px;margin-top: 10px;">
+                                </div>
+                                <div class="col-6 col-sm-6">
+                                    <span style="font-weight: bold;font-size: 18px;">Price : </span><br>
+                                    <span style="font-weight: bold; font-size: 30px;">@(Model.Product != null ? Model.Product.Price.ToString("0.00") : "") $</span>
+                                </div>
+                            </div>
+                            <div class="add-context">
+                                @if (Model.Product.Quantity > 0)
+                                {
+
+                                    <a href="@Url.Action("Checkout","Shop")" class="add-cart-btn addToCart" data-id="@Model.Product.Id">Add to cart</a>
+                                }
+
+                                <a href="#" style="float: right;background:transparent;margin-top: -13px;" data-id="@(Model.Product!=null?Model.Product.Id:0)" class="list-icon addWishList @(WishList!=null?(WishList.Contains(Model.Product.Id.ToString())==true?"addedWishlist":""):"")" title="Add to wishlist">
+                                    <i class="fa fa-heart" style="font-size: 35px;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shop area end-->
+<!-- service area -->
+
+<section class="service-area pt-5">
+    <div id="shop-slider">
+        <div class="container">
+            <div class=" section-text" id="like-text" style="text-align:right;font-size:20px">You may also like</div>
+
+            <div class="owl-carousel owl-theme">
+                @foreach (var item in Model.Products)
+                {
+                    <div class="item pt-4">
+                        <div class="product">
+                            <div class="product-image">
+                                <img src="~/Uploads/@((item.ProductImages != null && item.ProductImages.FirstOrDefault()!=null)?item.ProductImages.FirstOrDefault().Image: "")" alt="Pet bed">
+                                <div class="list">
+                                    <a href="#" data-id="@item.Id" class="list-icon addWishList @(WishList!=null?(WishList.Contains(item.Id.ToString())==true?"addedWishlist":""):"")" title="Add to wishlist">
+                                        <i class="fa fa-heart" aria-hidden="true" style="margin-bottom:16px;"></i>
+                                    </a>
+
+                                    <a href="#" class="list-icon" title="Add to cart" style="padding:6px;">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            @if (item.Quantity == 0)
+                            {
+                                <strong class="text-uppercase">sold out!</strong>
+                            }
+                            <div class="product-content text-center">
+                                <h5>@item.Name</h5>
+                                <h6 style="margin-bottom:15px;">$ @(item.Price != null ? item.Price.ToString("0.00") : "")</h6>
+                                <a href="@Url.Action("ProductDetails", "Shop", new { Id = item.Id })" class="product-details-button ">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- service area end-->

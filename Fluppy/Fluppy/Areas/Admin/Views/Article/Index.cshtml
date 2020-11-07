@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Fluppy.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="mt-2 ml-4 mr-4">
+        <h4>Article</h4>
+
+        <h2 style="font-weight:bold;">Index</h2>
+
+        <a class=" btn btn-primary" href="@Url.Action("Create","Article") ">Create New</a>
+        <table class="table table-responsive ">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Uploads/@item.Image" alt="@item.Image" width="100" />
+                        @Html.DisplayFor(modelItem => item.Admin.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        <a class="update-link btn btn-primary" href="@Url.Action("Update","Article", new { id = item.Id }) "><i class="fas fa-edit"></i></a>
+                        <a class="update-link btn btn-info" href="@Url.Action("Details","Article", new { id = item.Id }) "><i class="fas fa-info-circle"></i></a>
+                        <a class="update-link btn btn-danger" href="@Url.Action("Delete","Article", new { id = item.Id }) " onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

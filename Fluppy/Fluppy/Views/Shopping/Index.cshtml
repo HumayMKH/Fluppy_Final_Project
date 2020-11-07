@@ -1,0 +1,89 @@
+﻿@model Fluppy.ViewModels.VmProduct
+@{
+    ViewBag.Title = "Index";
+
+    List<string> WishList = ViewBag.WishList;
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header image -->
+@{
+    Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+<!-- header image end-->
+<!-- Shop area -->
+
+<section class="products-area">
+    <div class="container">
+        <div class=" section-text" id="products-text">Our Products</div>
+        <form action="@Url.Action("Index","Shopping")" style="width:100%;">
+            <div class="row sort-by pt-4">
+                <div class="col-12 col-md-6 col-lg-2 pb-2">
+                    <label for="categories">Categories</label><br>
+                    <select class="form-controls" name="CatId">
+                        <option value="null">Choose</option>
+
+                        @foreach (var item in Model.ProductCategories)
+                        {
+                            <option value="@item.Id" @(Model.SearchShop.CatId==item.Id?"selected":"")>@item.Name</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 pb-2">
+                    <label for="categories">Pet Type</label><br>
+                    <select class="form-controls" name="PetTypeId">
+                        <option value="null">Choose</option>
+
+                        @foreach (var item in Model.PetTypes)
+                        {
+                            <option value="@item.Id" @(Model.SearchShop.PetTypeId==item.Id?"selected":"")>@item.Type</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 pb-2">
+                    <label for="price">Price</label><br>
+
+                    Min <input type="number" style="width: 35%;" value="0" min="0" max="10000" name="PriceMin"> - Max <input type="number" style="width: 35%;" value="0" min="0" max="10000" name="PriceMax">
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 pb-2">
+                    <label for="search">Search for</label>
+                    <input name="Search" type="search" placeholder="Search for..." style=" width:100%;">
+                </div>
+                <button type="submit" class="search-button mb-2 ml-3" style="outline:none;">Search</button>
+            </div>
+        </form>
+
+        <div class="row">
+            @{
+                Html.RenderPartial("~/Views/Shared/_ProductPartial.cshtml", Model.Products);
+            }
+            <div class="col-12">
+                <div class="col-3 col-sm-3 ml-auto mr-auto mt-4">
+                    <div class="pagination">
+                        <ul>
+                            @if (Model.Currentpage > 1)
+                            {
+                                <li><a href="@Url.Action("Index","Shopping", new { page=(Model.Currentpage==1?1:Model.Currentpage-1)})"><i class="fas fa-arrow-left"></i> </a></li>
+                            }
+                            @for (int i = 1; i <= Model.PageCount; i++)
+                            {
+
+                                <li class="@(Model.Currentpage==i?"currentpage":"")"><a href="@Url.Action("Index","Shopping",new{page=i})"> @i </a></li>
+                            }
+                            @if (Model.Currentpage < Model.PageCount)
+                            {
+                                <li><a href="@Url.Action("Index","Shopping", new { page=(Model.Currentpage==Model.PageCount?Model.PageCount:Model.Currentpage+1)})"><i class="fas fa-arrow-right"></i> </a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shop area end-->

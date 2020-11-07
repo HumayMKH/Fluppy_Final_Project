@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Fluppy.Models.Service>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="mt-2 ml-4 mr-4">
+        <h4>Services</h4>
+
+        <h2 style="font-weight:bold;">Index</h2>
+        <a class=" btn btn-primary" href="@Url.Action("Create","Service") ">Create New</a>
+
+        <table class="table table-responsive">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceDayBig)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceWeekBig)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceMonthBig)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceDaySmall)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceWeekSmall)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceMonthSmall)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        <img src="~/Uploads/@item.Image" alt="@item.Image" width="100" />
+                    </td>
+                    <td>
+                        @(item.Content.Length>100?item.Content.Substring(0,100)+"...":item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceDayBig)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceWeekBig)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceMonthBig)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceDaySmall)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceWeekSmall)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceMonthSmall)
+                    </td>
+                    <td>
+                        <a class="update-link btn btn-primary" href="@Url.Action("Update","Service", new { id = item.Id }) "><i class="fas fa-edit"></i></a>
+                        <a class="update-link btn btn-info" href="@Url.Action("Details","Service", new { id = item.Id }) "><i class="fas fa-info-circle"></i></a>
+                        <a class="update-link btn btn-danger" href="@Url.Action("Delete","Service", new { id = item.Id }) " onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

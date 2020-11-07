@@ -1,0 +1,17 @@
+﻿
+    .categoriesContainer .addButton {
+       position:relative;
+       
+    }
+
+        .categoriesContainer .addButton p {
+            font-size: 25px;
+            font-weight: 700;
+            color: red;
+            cursor: pointer;
+            border: 1px solid #bfc9d4;
+            padding: 0 10px;
+            position: absolute;
+            top: 31px;
+            cursor:pointer;
+        }

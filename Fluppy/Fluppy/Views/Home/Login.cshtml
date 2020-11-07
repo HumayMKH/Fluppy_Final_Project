@@ -1,0 +1,34 @@
+﻿@model Fluppy.ViewModels.VmLogin
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<!-- header image -->
+
+<section class="header-image">
+    <div class="image-area" style="background-image: url('/Public/assets/img/login/stainless-images-RUgbGfdma6U-unsplash.jpg');background-position: top;">
+        <div class="login-form">
+            <div class="login-box">
+                <div class="login-box-container">
+                    <h1>Login</h1>
+                    <form method="post" autocomplete="off">
+                        <div class="form-group textbox">
+                            <i class="fa fa-user-secret" aria-hidden="true"></i>
+                            @Html.TextBoxFor(m => m.Username, null, new { @class = "form-control", @placeholder = "Username" })
+                            @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group textbox">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control", @placeholder = "Password", @type = "password" })
+                            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+                        </div>
+                        <a href="@Url.Action("Register","Home")">Register now?</a>
+                        <button type="submit" class="btn-login" style="outline:none;">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- header image end-->

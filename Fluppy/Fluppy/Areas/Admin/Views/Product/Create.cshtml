@@ -1,0 +1,98 @@
+﻿@model Fluppy.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data" class="ml-4 mt-2">
+
+    <div class="form-horizontal">
+        <h4>Product</h4>
+        <h2 style="font-weight:bold;">Create</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group categoriesContainer">
+            <div class="col-md-10">
+                <div class="row categories">
+                    <div class="col-11 col-sm-11">
+                        <label for="exampleFormControlSelect1">Pet Type</label>
+                        <select class="form-control selects" name="PetTypeId" id="exampleFormControlSelect1">
+                            @foreach (var item in ViewBag.PetType)
+                            {
+                                <option value="@item.Id">@item.Type</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="addButton col-1 col-sm-1 p-0">
+                        <p>
+                            +
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ImageFile, new { @class = "form-control", @type = "file", @multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label>Product Category</label>
+                <select class="form-control" name="ProductCategoryId">
+                    <option value="value">Choose</option>
+                    @foreach (var item in ViewBag.ProductCategory)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="@Url.Action("Index", "Product")" class="btn btn-danger mb-2">Back To List</a>
+            </div>
+        </div>
+    </div>
+</form>

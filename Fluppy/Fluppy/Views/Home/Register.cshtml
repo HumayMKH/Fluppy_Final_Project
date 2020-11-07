@@ -1,0 +1,79 @@
+﻿@model Fluppy.Models.User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<!-- header image -->
+
+    <section class="header-image">
+        <div class="image-area"
+             style="background-image: url('/Public/assets/img/login/stainless-images-RUgbGfdma6U-unsplash.jpg');background-position: top;">
+          
+            <div class="login-form">
+                <div class="login-box">
+                    <div class="login-box-container">
+                        <h1 style="font-size:24px;
+                                   border-bottom: 4px solid #377b00;
+                                   margin-bottom: 8px;
+                                   padding-bottom: 4px;">
+                            Register
+                        </h1>
+                        <form method="post" autocomplete="off">
+                            <div class="form-group textbox-register">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                @Html.TextBoxFor(m => m.Surname, null, new { @class = "form-control", @placeholder = "Surname" })
+                                @Html.ValidationMessageFor(m => m.Surname, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                                @Html.TextBoxFor(m => m.Username, null, new { @class = "form-control", @placeholder = "Username" })
+                                @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group textbox-register">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", @placeholder = "Email", @type = "email" })
+                                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Phone" })
+                                @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fas fa-globe-americas"></i>
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City" })
+                                @Html.ValidationMessageFor(m => m.City, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fas fa-vote-yea"></i>
+                                @Html.TextBoxFor(m => m.PostCode, new { @class = "form-control", @placeholder = "PostCode" })
+                                @Html.ValidationMessageFor(m => m.PostCode, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fas fa-map-marker-alt"></i>
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
+                                @Html.ValidationMessageFor(m => m.Address, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group textbox-register">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control", @placeholder = "Password", @type = "password" })
+                                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn-register" style="outline:none;">Register</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- header image end-->

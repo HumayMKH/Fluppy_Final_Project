@@ -1,0 +1,141 @@
+﻿@model Fluppy.ViewModels.VmAdopt
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header image -->
+@{
+        Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+<!-- header image end-->
+<!-- adopt-info area -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9" style="margin-left: auto;margin-right: auto;margin-top: 70px;">
+
+            <div class="adopt-card-info">
+                <div class="row">
+                    <div class="col-12 col-sm-5" style="padding:0;">
+
+
+                        <div class="image-box-info" style="position: relative;padding-left:15px;">
+
+                            <div id="adopt-details">
+
+
+                                <div class="owl-carousel owl-theme ">
+                                    @foreach (var item in Model.SlideAdopts)
+                                    {
+                                        <div class=" item">
+                                            <img class="adopt-details-img" src="~/Uploads/@item.Image" alt="pet image">
+
+                                        </div>
+                                    }
+
+                                </div>
+                                <div class="adopt-social-info">
+                                    <ul>
+                                        
+                                        @foreach (var item in Model.Adopt.AdoptSocials)
+                                        {
+                                            <li><a href="@item.Link"><i class="@item.SocialType.Icon" aria-hidden="true"></i></a></li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="content-adopt-info text-center">
+                            <h3 class="adopt-pet-name">@(Model.Adopt!=null?Model.Adopt.Name:"")</h3>
+                            <ul>
+                                <li><span> Gender : </span>@((Model.Adopt!=null && Model.Adopt.Gender != null )? Model.Adopt.Gender.Name:"")</li>
+                                <li><span> Neutered : </span>@(Model.Adopt!=null?Model.Adopt.Neutered:false)</li>
+                                <li><span> Age : </span>@(Model.Adopt!=null?Model.Adopt.Age:0)  @((Model.Adopt!=null && Model.Adopt.AgeType != null )? Model.Adopt.AgeType.Name:"")</li>
+                                <li><span> Address : </span>@(Model.Adopt!=null?Model.Adopt.Address:"")</li>
+                                <li><span> Breed : </span>@(Model.Adopt!=null?Model.Adopt.Breed:"")</li>
+                                <li><span> Vaccinated : </span>@(Model.Adopt!=null?Model.Adopt.Vaccinated:false)</li>
+                                <li><span> Size : </span>@((Model.Adopt!=null && Model.Adopt.PetSize != null )? Model.Adopt.PetSize.Size:"")</li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-7">
+                        <div class="col-12 col-sm-12 pt-3">
+                            <div class="row">
+                                <form method="post" style="width:100%;" autocomplete="off" action="@Url.Action("AdoptMessage","Adopt")">
+
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.Name, new { htmlAttributes = new { @placeholder = "Fullname", @class = "form-controls" } })
+
+                                        @Html.ValidationMessageFor(m => m.Appointment.Name, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.Phone, new { htmlAttributes = new { @placeholder = "Phone", @class = "form-controls" } })
+                                        @Html.ValidationMessageFor(m => m.Appointment.Phone, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.Email, new { htmlAttributes = new { @placeholder = "Email", @class = "form-controls", @type = "email" } })
+                                        @Html.ValidationMessageFor(m => m.Appointment.Email, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 contact-size-input-service">
+                                        @Html.EditorFor(model => model.Appointment.DateAndTimeNotMapped, new { htmlAttributes = new { @class = "form-controls", @id = "DateAndTime", placeholder = "Date and time" } })
+                                        @Html.ValidationMessageFor(m => m.Appointment.DateAndTimeNotMapped, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 Appointment-size-input-service">
+                                        <span style="color:#495057;">Your Message :</span>
+
+                                        @Html.TextAreaFor(model => model.Appointment.Message, new { @class = "form-controls", @style = "width:100%;height:100px;outline:none;padding:10px 15px;" })
+                                        @Html.ValidationMessageFor(m => m.Appointment.Message, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-12 col-sm-12 Appointment-size-input-service">
+                                        <input type="hidden" name="AdoptId" value="@Model.Adopt.Id" />
+                                    </div>
+                                    <div class="col-12 col-sm-12 contact-size-input-service" style="padding-top:20px;">
+                                        <button type="submit" style="outline: none;width: 100%;padding: 10px 15px;
+                                         outline: none;background: #377b00;color: white;border: 2px solid #377b00">
+                                            Appointment
+                                        </button>
+
+                                    </div>
+                                </form>
+                                <div style="padding:0 15px;">
+                                    @if (Session["Required"] != null)
+                                    {
+                                        Session["Required"] = null;
+                                        <div class="alert alert-warning">
+                                            Please fill all inputs!
+                                        </div>
+                                    }
+
+                                    @if (Session["Success"] != null)
+                                    {
+                                        Session["Success"] = null;
+                                        <div class="alert alert-success">
+                                            Your message sent successfully!
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- adopt-info area -->

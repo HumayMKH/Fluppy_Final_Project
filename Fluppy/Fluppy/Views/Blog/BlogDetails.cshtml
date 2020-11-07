@@ -1,0 +1,50 @@
+﻿@model Fluppy.ViewModels.VmBlog
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header image -->
+
+
+@{
+    Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+<!-- header image end-->
+<!--blog detail area -->
+
+<section class="blog-detail">
+    <div class="blog-detail-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-3" style="margin:auto">
+                    <img src="~/Uploads/@(Model.Blog!=null?Model.Blog.Admin.Image:"")"
+                         style="width: 50px;border-radius: 50%;display:block;margin-right: auto;margin-left: auto;"
+                         alt="author">
+                    <p class="text-center">
+                        Author: <br> <span style="color:#377B00;font-size: 16px;font-weight: bold;">@(Model.Blog!=null?Model.Blog.Admin.Name:"") @(Model.Blog!=null?Model.Blog.Admin.Surname:"") </span>
+                    </p>
+                </div>
+            </div>
+            <div class="blog-info"
+                 style="border-top: 1px solid rgba(232,232,232,1);color:#377B00;padding-top: 20px;">
+                <h3 class="blog-title text-center" style="text-transform: uppercase;">
+                    @(Model.Blog!=null?Model.Blog.Title:"")
+                </h3>
+                <p style="padding: 20px; margin:10px 0!important;background: #f7c616;color:white; border-radius: 5px;display: inline-block;">
+                    @(Model.Blog!=null? Model.Blog.Date.ToString("dd / MMM") : "")
+                </p>
+               
+                <p style="display: inline-block;"><i class="fa fa-eye" style="margin-left: 40px;margin-right: 10px;" aria-hidden="true"></i>@(Model.Blog!=null?Model.Blog.ViewCount:0) Views</p>
+
+            </div>
+
+            <div style="background-image: url(/Uploads/@(Model.Blog!=null?Model.Blog.ImageBig:""));width: 100%;height: 300px;background-size: cover;background-position: center center; background-repeat: no-repeat;">
+            </div>
+            <p style="padding-top: 30px;">
+                @(Model.Blog!=null?Model.Blog.Content:"")
+            </p>
+        </div>
+    </div>
+</section>
+
+<!--blog detail area end-->

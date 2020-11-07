@@ -1,0 +1,89 @@
+﻿@model Fluppy.Models.Service
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="ml-4 mt-2">
+        <h4>Team</h4>
+
+        <h2 style="font-weight:bold;">Details</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dd>
+                <img src="~/Uploads/@Model.Image" alt="@Model.Image" width="100" /><br />
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceDayBig)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceDayBig)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceWeekBig)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceWeekBig)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceMonthBig)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceMonthBig)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceDaySmall)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceDaySmall)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceWeekSmall)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceWeekSmall)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceMonthSmall)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceMonthSmall)
+            </dd>
+
+        </dl>
+        <p>
+            <a href="@Url.Action("Update", "Service", new { id = Model.Id })" class="btn btn-info  mb-2">Update</a>
+
+            <a href="@Url.Action("Index", "Service")" class="btn btn-danger  mb-2 ml-2">Back To List</a>
+        </p>
+    </div>

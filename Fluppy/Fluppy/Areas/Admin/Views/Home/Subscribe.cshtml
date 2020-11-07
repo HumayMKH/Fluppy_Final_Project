@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Fluppy.Models.Subscribe>
+
+@{
+    ViewBag.Title = "Subscribe";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-2 ml-4 mr-4">
+    <h4>Subscribe</h4>
+
+    <h2 style="font-weight:bold;">Index</h2>
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    <a class="update-link btn btn-danger" href="@Url.Action("Delete", "Subscribe", new { id = item.Id }) " onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

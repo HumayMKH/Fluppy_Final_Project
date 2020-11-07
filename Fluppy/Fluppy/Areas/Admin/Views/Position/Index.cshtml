@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Fluppy.Models.Position>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-2 ml-4 mr-4">
+    <h4>Position</h4>
+
+    <h2 style="font-weight:bold;">Index</h2>
+
+    <a class=" btn btn-primary" href="@Url.Action("Create","Position") ">Create New</a>
+    <table class="table table-responsive ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class="update-link btn btn-primary" href="@Url.Action("Update","Position", new { id = item.Id }) "><i class="fas fa-edit"></i></a>
+                    <a class="update-link btn btn-info" href="@Url.Action("Details","Position", new { id = item.Id }) "><i class="fas fa-info-circle"></i></a>
+                    <a class="update-link btn btn-danger" href="@Url.Action("Delete","Position", new { id = item.Id }) " onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

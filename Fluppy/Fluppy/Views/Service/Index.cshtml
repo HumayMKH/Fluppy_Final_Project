@@ -1,0 +1,59 @@
+﻿@model Fluppy.ViewModels.VmService
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- header image -->
+
+@{
+    Html.RenderPartial("~/Views/Shared/_HeaderImagePartial.cshtml", Model.HeaderImage);
+}
+
+
+<!-- header image end-->
+<!-- service area -->
+
+<section class="service-area">
+    <div class="container">
+        <div class=" section-text" id="service-text">Our Services</div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3 pt-4">
+                <div class="service-box">
+                    <div class="service-image">
+
+                        <img src="~/Public/assets/img/sevices/pexels-marko-blazevic-774731.jpg" alt="Pet Adoption" style="height:300px;">
+                    </div>
+                    <div class="service-content">
+                        <h6><a href="service-info.html" class="service-title" style="text-transform:uppercase;">Pet Adoption</a></h6>
+                        <p>
+                            Knock dish off table head butt cant eat out of my own dish cats  all the
+                            worlds
+                            muffins.
+
+                        </p>
+                        <a href="@Url.Action("Index","Adopt")" class="read-more-service">More Info</a>
+                    </div>
+                </div>
+            </div>
+            @foreach (var item in Model.Services)
+            {
+                <div class="col-md-6 col-lg-4 col-xl-3 pt-4">
+                    <div class="service-box">
+                        <div class="service-image">
+                            <img src="~/Uploads/@item.Image" alt="@item.Image" style="height:300px;">
+                        </div>
+                        <div class="service-content">
+                            <h6><a href="service-info.html" class="service-title">@item.Title</a></h6>
+                            <p>
+                                @(item.Content.Length > 150 ? item.Content.Substring(0, 150) + "..." : item.Content)
+
+                            </p>
+                            <a href="@Url.Action("ServiceDetails", "Service", new { Id = item.Id })" class="read-more-service">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        </div>
+</section>
+
+<!-- service area end-->

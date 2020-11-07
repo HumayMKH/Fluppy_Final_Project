@@ -1,0 +1,33 @@
+﻿@model List<Fluppy.Models.Article>
+
+<div id="articles">
+    <div class="owl-carousel owl-theme ">
+        @foreach (var article in Model)
+        {
+            <div class="article-area" style="background-image: url('/Uploads/@article.Image');">
+                <div class="container">
+                    <div class="testimonials-box-article item">
+                        <!-- <div class="testimonial-photo">
+                            <img src="~/Public/assets/img/testimonial/testimonial2.png" alt="testimonial-photo">
+                        </div> -->
+                        <h5 style="text-transform: uppercase;margin-bottom: 5px;font-weight: bold;">
+                            @article.Title
+                        </h5>
+                        <p class="text-center">
+                            Author: <span style="font-size: 16px;font-weight: bold;border-bottom: 1px solid">@article.Admin.Name</span>
+                        </p>
+                        <p style="font-style: italic; ">
+                            @Html.Raw(article.Content)
+                        </p>
+                        <p style="letter-spacing:3px">
+
+                            <span>@article.Date.ToString("dd.MM.yyyy")</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>

@@ -1,0 +1,1293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A2D4341-EA7F-486D-ADA5-83A34EC319B4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fluppy</RootNamespace>
+    <AssemblyName>Fluppy</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdoptController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdoptSocialController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AgeTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AppointmentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HeaderImageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeSliderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeSocialController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PetSizeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PetTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SaleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SocialTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamSocialController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestimonialController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Filters\logout.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AdoptController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
+    <Compile Include="DAL\FluppyContext.cs" />
+    <Compile Include="Filter\logout.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009191427367_init.cs" />
+    <Compile Include="Migrations\202009191427367_init.designer.cs">
+      <DependentUpon>202009191427367_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009191938157_iconblog.cs" />
+    <Compile Include="Migrations\202009191938157_iconblog.designer.cs">
+      <DependentUpon>202009191938157_iconblog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009192005046_pettype.cs" />
+    <Compile Include="Migrations\202009192005046_pettype.designer.cs">
+      <DependentUpon>202009192005046_pettype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009192009050_type.cs" />
+    <Compile Include="Migrations\202009192009050_type.designer.cs">
+      <DependentUpon>202009192009050_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009192224407_blobigimage.cs" />
+    <Compile Include="Migrations\202009192224407_blobigimage.designer.cs">
+      <DependentUpon>202009192224407_blobigimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Admins.cs" />
+    <Compile Include="Models\Adopt.cs" />
+    <Compile Include="Models\AdoptRule.cs" />
+    <Compile Include="Models\AdoptSocial.cs" />
+    <Compile Include="Models\AgeType.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogCategory.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentReply.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\HeaderImage.cs" />
+    <Compile Include="Models\HomeSetting.cs" />
+    <Compile Include="Models\HomeSlider.cs" />
+    <Compile Include="Models\HomeSocial.cs" />
+    <Compile Include="Models\PetSize.cs" />
+    <Compile Include="Models\PetType.cs" />
+    <Compile Include="Models\PetTypeToProduct.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Models\ProductImage.cs" />
+    <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\SlideAdopt.cs" />
+    <Compile Include="Models\SocialType.cs" />
+    <Compile Include="Models\Subscribe.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamSocial.cs" />
+    <Compile Include="Models\Testimonial.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\VmAbout.cs" />
+    <Compile Include="ViewModels\VmAdopt.cs" />
+    <Compile Include="ViewModels\VmBlog.cs" />
+    <Compile Include="ViewModels\VmContact.cs" />
+    <Compile Include="ViewModels\VmHome.cs" />
+    <Compile Include="ViewModels\VmLogin.cs" />
+    <Compile Include="ViewModels\VmProceed.cs" />
+    <Compile Include="ViewModels\VmProduct.cs" />
+    <Compile Include="ViewModels\VmSearchShop.cs" />
+    <Compile Include="ViewModels\VmService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Public\assets\css\admin-css\admin.css" />
+    <Content Include="Areas\Admin\Public\assets\css\admin-css\indecdesign.css" />
+    <Content Include="Areas\Admin\Public\assets\css\admin-css\MultiType.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\contacts.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\invoice.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\mailbox.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\mailing-chat.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\notes.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\scrumboard.css" />
+    <Content Include="Areas\Admin\Public\assets\css\apps\todolist.css" />
+    <Content Include="Areas\Admin\Public\assets\css\authentication\form-1.css" />
+    <Content Include="Areas\Admin\Public\assets\css\authentication\form-2.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\cards\card.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-carousel.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-countdown.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-counter.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-list-group.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-media_object.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-modal.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\custom-sweetalert.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\tabs-accordian\custom-accordions.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\tabs-accordian\custom-tabs.css" />
+    <Content Include="Areas\Admin\Public\assets\css\components\timeline\custom-timeline.css" />
+    <Content Include="Areas\Admin\Public\assets\css\dashboard\dash_1.css" />
+    <Content Include="Areas\Admin\Public\assets\css\dashboard\dash_2.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\alert.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\avatar.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\breadcrumb.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\color_library.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\custom-pagination.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\custom-tree_view.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\custom-typography.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\infobox.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\miscellaneous.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\popover.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\search.css" />
+    <Content Include="Areas\Admin\Public\assets\css\elements\tooltip.css" />
+    <Content Include="Areas\Admin\Public\assets\css\forms\custom-clipboard.css" />
+    <Content Include="Areas\Admin\Public\assets\css\forms\switches.css" />
+    <Content Include="Areas\Admin\Public\assets\css\forms\theme-checkbox-radio.css" />
+    <Content Include="Areas\Admin\Public\assets\css\loader.css" />
+    <Content Include="Areas\Admin\Public\assets\css\main.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\coming-soon\style.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\contact_us.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\error\style-400.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\error\style-500.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\error\style-503.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\error\style-maintanence.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\faq\faq.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\faq\faq2.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\helpdesk.css" />
+    <Content Include="Areas\Admin\Public\assets\css\pages\privacy\privacy.css" />
+    <Content Include="Areas\Admin\Public\assets\css\plugins.css" />
+    <Content Include="Areas\Admin\Public\assets\css\scrollspyNav.css" />
+    <Content Include="Areas\Admin\Public\assets\css\structure.css" />
+    <Content Include="Areas\Admin\Public\assets\css\tables\table-basic.css" />
+    <Content Include="Areas\Admin\Public\assets\css\users\account-setting.css" />
+    <Content Include="Areas\Admin\Public\assets\css\users\user-profile.css" />
+    <Content Include="Areas\Admin\Public\assets\css\widgets\modules-widgets.css" />
+    <Content Include="Areas\Admin\Public\assets\img\1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\90x90.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\ab-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\arrow-down.png" />
+    <Content Include="Areas\Admin\Public\assets\img\bg.png" />
+    <Content Include="Areas\Admin\Public\assets\img\boy-2.png" />
+    <Content Include="Areas\Admin\Public\assets\img\boy.png" />
+    <Content Include="Areas\Admin\Public\assets\img\ca.png" />
+    <Content Include="Areas\Admin\Public\assets\img\camera.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\de.png" />
+    <Content Include="Areas\Admin\Public\assets\img\delete-user-11.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\delete-user-12.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\delete-user-15.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\delete-user-16.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\delete-user-17.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\delete-user-4.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\drag-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\drag-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\drag-4.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\dragp-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\dragp-4.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\dragp-6.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\dragp-7.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\faq.svg" />
+    <Content Include="Areas\Admin\Public\assets\img\favicon.ico" />
+    <Content Include="Areas\Admin\Public\assets\img\fr.png" />
+    <Content Include="Areas\Admin\Public\assets\img\g-7.png" />
+    <Content Include="Areas\Admin\Public\assets\img\g-8.png" />
+    <Content Include="Areas\Admin\Public\assets\img\girl-1.png" />
+    <Content Include="Areas\Admin\Public\assets\img\girl-2.png" />
+    <Content Include="Areas\Admin\Public\assets\img\girl-3.png" />
+    <Content Include="Areas\Admin\Public\assets\img\girl-4.png" />
+    <Content Include="Areas\Admin\Public\assets\img\grid-blog-style-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\grid-blog-style-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\grid-blog-style-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\headphones.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\jp.png" />
+    <Content Include="Areas\Admin\Public\assets\img\laptop.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\lightbox-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\lightbox-14.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\lightbox-15.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\lightbox-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\lightbox-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\lightbox-8.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\list-blog-style-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\list-blog-style-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\logo.svg" />
+    <Content Include="Areas\Admin\Public\assets\img\logo2.svg" />
+    <Content Include="Areas\Admin\Public\assets\img\masonry-blog-style-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\masonry-blog-style-4.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\mindset.svg" />
+    <Content Include="Areas\Admin\Public\assets\img\p6.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\p7.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\p9.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-10.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-11.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-12.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-13.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-14.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-15.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-16.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-17.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-18.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-19.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-20.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-21.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-22.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-23.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-24.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-25.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-26.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-28.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-29.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-31.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-32.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-33.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-34.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-4.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-5.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-6.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-7.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-8.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\profile-9.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\scroll-6.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\scroll-7.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\scroll-8.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\scrumboard-upload-img.svg" />
+    <Content Include="Areas\Admin\Public\assets\img\shield-1086703_960_720.png" />
+    <Content Include="Areas\Admin\Public\assets\img\shoes.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\slider-1.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\slider-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\slider-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\speaker.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\sunglass.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\taskboard.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\tl-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\tl-3.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\tl-4.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\tl-5.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\video-chat-2.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\video-chat.jpg" />
+    <Content Include="Areas\Admin\Public\assets\img\watch.jpg" />
+    <Content Include="Areas\Admin\Public\assets\js\AddButton\Addbutton.js" />
+    <Content Include="Areas\Admin\Public\assets\js\app.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\contact.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\custom-mailbox.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\invoice.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\mailbox-chat.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\notes.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\scrumboard.js" />
+    <Content Include="Areas\Admin\Public\assets\js\apps\todoList.js" />
+    <Content Include="Areas\Admin\Public\assets\js\authentication\form-1.js" />
+    <Content Include="Areas\Admin\Public\assets\js\authentication\form-2.js" />
+    <Content Include="Areas\Admin\Public\assets\js\Blogdate.js" />
+    <Content Include="Areas\Admin\Public\assets\js\clipboard\clipboard.min.js" />
+    <Content Include="Areas\Admin\Public\assets\js\components\custom-countdown.js" />
+    <Content Include="Areas\Admin\Public\assets\js\components\custom-counter.js" />
+    <Content Include="Areas\Admin\Public\assets\js\components\notification\custom-snackbar.js" />
+    <Content Include="Areas\Admin\Public\assets\js\components\session-timeout\bootstrap-session-timeout.js" />
+    <Content Include="Areas\Admin\Public\assets\js\components\session-timeout\custom-bootstrap_session_timeout.js" />
+    <Content Include="Areas\Admin\Public\assets\js\components\ui-accordions.js" />
+    <Content Include="Areas\Admin\Public\assets\js\custom.js" />
+    <Content Include="Areas\Admin\Public\assets\js\dashboard\dash_1.js" />
+    <Content Include="Areas\Admin\Public\assets\js\dashboard\dash_2.js" />
+    <Content Include="Areas\Admin\Public\assets\js\elements\custom-search.js" />
+    <Content Include="Areas\Admin\Public\assets\js\elements\popovers.js" />
+    <Content Include="Areas\Admin\Public\assets\js\elements\tooltip.js" />
+    <Content Include="Areas\Admin\Public\assets\js\forms\bootstrap_validation\bs_validation_script.js" />
+    <Content Include="Areas\Admin\Public\assets\js\forms\custom-clipboard.js" />
+    <Content Include="Areas\Admin\Public\assets\js\ie11fix\fn.fix-padStart.js" />
+    <Content Include="Areas\Admin\Public\assets\js\libs\jquery-3.1.1.min.js" />
+    <Content Include="Areas\Admin\Public\assets\js\loader.js" />
+    <Content Include="Areas\Admin\Public\assets\js\pages\coming-soon\coming-soon.js" />
+    <Content Include="Areas\Admin\Public\assets\js\pages\faq\faq.js" />
+    <Content Include="Areas\Admin\Public\assets\js\pages\faq\faq2.js" />
+    <Content Include="Areas\Admin\Public\assets\js\pages\helpdesk.js" />
+    <Content Include="Areas\Admin\Public\assets\js\script.js" />
+    <Content Include="Areas\Admin\Public\assets\js\scrollspyNav.js" />
+    <Content Include="Areas\Admin\Public\assets\js\users\account-settings.js" />
+    <Content Include="Areas\Admin\Public\assets\js\widgets\modules-widgets.js" />
+    <Content Include="Areas\Admin\Public\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Public\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Public\bootstrap\js\popper.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\animate\animate.css" />
+    <Content Include="Areas\Admin\Public\plugins\apex\apexcharts.css" />
+    <Content Include="Areas\Admin\Public\plugins\apex\apexcharts.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\apex\custom-apexcharts.js" />
+    <Content Include="Areas\Admin\Public\plugins\autocomplete\autocomplete.css" />
+    <Content Include="Areas\Admin\Public\plugins\autocomplete\countries.js" />
+    <Content Include="Areas\Admin\Public\plugins\autocomplete\demo.js" />
+    <Content Include="Areas\Admin\Public\plugins\autocomplete\jquery.autocomplete.js" />
+    <Content Include="Areas\Admin\Public\plugins\autocomplete\jquery.mockjax.js" />
+    <Content Include="Areas\Admin\Public\plugins\blockui\custom-blockui.js" />
+    <Content Include="Areas\Admin\Public\plugins\blockui\jquery.blockUI.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-maxlength\bootstrap-maxlength.js" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-maxlength\custom-bs-maxlength.js" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-range-Slider\bootstrap-rangeSlider.js" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-range-Slider\bootstrap-slider.css" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-select\bootstrap-select.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-touchspin\custom-bootstrap-touchspin.js" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\bootstrap-touchspin\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\countdown\jquery.countdown.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\counter\jquery.countTo.js" />
+    <Content Include="Areas\Admin\Public\plugins\drag-and-drop\dragula\custom-dragula.js" />
+    <Content Include="Areas\Admin\Public\plugins\drag-and-drop\dragula\dragula.css" />
+    <Content Include="Areas\Admin\Public\plugins\drag-and-drop\dragula\dragula.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\drag-and-drop\dragula\example.css" />
+    <Content Include="Areas\Admin\Public\plugins\dropify\dropify.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\dropify\dropify.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\dropify\fonts\dropify.svg" />
+    <Content Include="Areas\Admin\Public\plugins\editors\markdown\custom-markdown.js" />
+    <Content Include="Areas\Admin\Public\plugins\editors\markdown\simplemde.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\editors\markdown\simplemde.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\editors\quill\custom-quill.js" />
+    <Content Include="Areas\Admin\Public\plugins\editors\quill\quill.js" />
+    <Content Include="Areas\Admin\Public\plugins\editors\quill\quill.snow.css" />
+    <Content Include="Areas\Admin\Public\plugins\file-upload\file-upload-with-preview.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\file-upload\file-upload-with-preview.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\flatpickr\custom-flatpickr.css" />
+    <Content Include="Areas\Admin\Public\plugins\flatpickr\custom-flatpickr.js" />
+    <Content Include="Areas\Admin\Public\plugins\flatpickr\flatpickr.css" />
+    <Content Include="Areas\Admin\Public\plugins\flatpickr\flatpickr.js" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\feather\feather.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\css\fontawesome.css" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\css\regular.css" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Areas\Admin\Public\plugins\fullcalendar\custom-fullcalendar.advance.css" />
+    <Content Include="Areas\Admin\Public\plugins\fullcalendar\custom-fullcalendar.advance.js" />
+    <Content Include="Areas\Admin\Public\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="Areas\Admin\Public\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\fullcalendar\moment.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\highlight\highlight.pack.js" />
+    <Content Include="Areas\Admin\Public\plugins\highlight\styles\monokai-sublime.css" />
+    <Content Include="Areas\Admin\Public\plugins\input-mask\input-mask.js" />
+    <Content Include="Areas\Admin\Public\plugins\input-mask\jquery.inputmask.bundle.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-step\custom-jquery.steps.js" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-step\jquery.steps.css" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-step\jquery.steps.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\africa\jquery-jvectormap-africa-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\asia\jquery-jvectormap-asia-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\continents\jquery-jvectormap-continents-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\europe\jquery-jvectormap-europe-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\jquery-jvectormap-2.0.3.css" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\jvector_script.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\north_america\jquery-jvectormap-north-america-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\oceania\jquery-jvectormap-oceanina-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\south-america\jquery-jvectormap-south-america-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\jvector\worldmap_script\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\custom-photswipe.css" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\custom-photswipe.js" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\default-skin\default-skin.css" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\default-skin\default-skin.png" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\default-skin\default-skin.svg" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\default-skin\preloader.gif" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\photoswipe-ui-default.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\photoswipe.css" />
+    <Content Include="Areas\Admin\Public\plugins\lightbox\photoswipe.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\loaders\custom-loader.css" />
+    <Content Include="Areas\Admin\Public\plugins\notification\snackbar\snackbar.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\notification\snackbar\snackbar.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\noUiSlider\custom-nouiSlider.css" />
+    <Content Include="Areas\Admin\Public\plugins\noUiSlider\custom-nouiSlider.js" />
+    <Content Include="Areas\Admin\Public\plugins\noUiSlider\nouislider.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\noUiSlider\nouislider.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Areas\Admin\Public\plugins\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\pricing-table\css\component.css" />
+    <Content Include="Areas\Admin\Public\plugins\select2\custom-select2.js" />
+    <Content Include="Areas\Admin\Public\plugins\select2\select2.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\select2\select2.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\sweetalerts\custom-sweetalert.js" />
+    <Content Include="Areas\Admin\Public\plugins\sweetalerts\promise-polyfill.js" />
+    <Content Include="Areas\Admin\Public\plugins\sweetalerts\sweetalert.css" />
+    <Content Include="Areas\Admin\Public\plugins\sweetalerts\sweetalert2.min.css" />
+    <Content Include="Areas\Admin\Public\plugins\sweetalerts\sweetalert2.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\button-ext\buttons.html5.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\button-ext\buttons.print.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\button-ext\dataTables.buttons.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\button-ext\jszip.min.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\custom_dt_custom.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\custom_dt_html5.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\custom_dt_miscellaneous.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\custom_dt_multiple_tables.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\custom_miscellaneous.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\datatables-dark.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\datatables.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\datatables.js" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\dt-global_style-dark.css" />
+    <Content Include="Areas\Admin\Public\plugins\table\datatable\dt-global_style.css" />
+    <Content Include="Areas\Admin\Public\plugins\tagInput\tags-input.css" />
+    <Content Include="Areas\Admin\Public\plugins\tagInput\tags-input.js" />
+    <Content Include="Areas\Admin\Public\plugins\treeview\custom-jstree.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Public\assets\css\Pagination.css" />
+    <Content Include="Public\assets\css\productjsStyle.css" />
+    <Content Include="Public\assets\css\style.css" />
+    <Content Include="Public\assets\datetimepicker-master\.gitignore" />
+    <Content Include="Public\assets\datetimepicker-master\build\jquery.datetimepicker.full.js" />
+    <Content Include="Public\assets\datetimepicker-master\build\jquery.datetimepicker.full.min.js" />
+    <Content Include="Public\assets\datetimepicker-master\build\jquery.datetimepicker.min.css" />
+    <Content Include="Public\assets\datetimepicker-master\build\jquery.datetimepicker.min.js" />
+    <Content Include="Public\assets\datetimepicker-master\index.html" />
+    <Content Include="Public\assets\datetimepicker-master\jquery.datetimepicker.css" />
+    <Content Include="Public\assets\datetimepicker-master\jquery.datetimepicker.js" />
+    <Content Include="Public\assets\datetimepicker-master\jquery.js" />
+    <Content Include="Public\assets\datetimepicker-master\karma.conf.js" />
+    <Content Include="Public\assets\datetimepicker-master\MIT-LICENSE.txt" />
+    <Content Include="Public\assets\datetimepicker-master\screen\1.png" />
+    <Content Include="Public\assets\datetimepicker-master\screen\2.png" />
+    <Content Include="Public\assets\datetimepicker-master\screen\3.1.png" />
+    <Content Include="Public\assets\datetimepicker-master\screen\3.png" />
+    <Content Include="Public\assets\datetimepicker-master\screen\4.png" />
+    <Content Include="Public\assets\datetimepicker-master\screen\5.png" />
+    <Content Include="Public\assets\datetimepicker-master\screen\6.png" />
+    <Content Include="Public\assets\datetimepicker-master\tests\app.css" />
+    <Content Include="Public\assets\datetimepicker-master\tests\index.html" />
+    <Content Include="Public\assets\datetimepicker-master\tests\input_in_container_fixed_to_bottom_of_viewport.html" />
+    <Content Include="Public\assets\datetimepicker-master\tests\input_in_container_fixed_to_top_of_viewport.html" />
+    <Content Include="Public\assets\datetimepicker-master\tests\tests\bootstrap.js" />
+    <Content Include="Public\assets\datetimepicker-master\tests\tests\destroy.js" />
+    <Content Include="Public\assets\datetimepicker-master\tests\tests\events.js" />
+    <Content Include="Public\assets\datetimepicker-master\tests\tests\init.js" />
+    <Content Include="Public\assets\datetimepicker-master\tests\tests\methods.js" />
+    <Content Include="Public\assets\datetimepicker-master\tests\tests\options.js" />
+    <Content Include="Public\assets\img\adopt-shop-lettering-background_106024-75.jpg" />
+    <Content Include="Public\assets\img\Adopt\adoption1.jpg" />
+    <Content Include="Public\assets\img\Adopt\adoptionsingle1.jpg" />
+    <Content Include="Public\assets\img\Adopt\adoptionsingle2.jpg" />
+    <Content Include="Public\assets\img\blog\blog1-mini.jpg" />
+    <Content Include="Public\assets\img\blog\blog1.jpg" />
+    <Content Include="Public\assets\img\blog\blog2-mini.jpg" />
+    <Content Include="Public\assets\img\blog\blog2.jpg" />
+    <Content Include="Public\assets\img\blog\blog3-mini.jpg" />
+    <Content Include="Public\assets\img\blog\blog3.jpg" />
+    <Content Include="Public\assets\img\blog\blog4-mini.jpg" />
+    <Content Include="Public\assets\img\blog\blog4.jpg" />
+    <Content Include="Public\assets\img\blog\blog5-mini.jpg" />
+    <Content Include="Public\assets\img\blog\blog5.jpg" />
+    <Content Include="Public\assets\img\blog\blog6-mini.jpg" />
+    <Content Include="Public\assets\img\blog\blog6.jpg" />
+    <Content Include="Public\assets\img\error\13.jpg" />
+    <Content Include="Public\assets\img\header-slider\header-slide1.jpg" />
+    <Content Include="Public\assets\img\header-slider\header-slide2.jpg" />
+    <Content Include="Public\assets\img\header-slider\header-slide3.jpg" />
+    <Content Include="Public\assets\img\login\stainless-images-RUgbGfdma6U-unsplash.jpg" />
+    <Content Include="Public\assets\img\logo\favicon-32x32.png" />
+    <Content Include="Public\assets\img\logo\logo-footer.png" />
+    <Content Include="Public\assets\img\logo\logo-header.png" />
+    <Content Include="Public\assets\img\other\adult-black-and-white-dalmatian-licking-face-of-woman-1389994.jpg" />
+    <Content Include="Public\assets\img\other\allie-H9LS95WL8tM-unsplash.jpg" />
+    <Content Include="Public\assets\img\other\cute-dog-laying-on-the-bed-672244.jpg" />
+    <Content Include="Public\assets\img\other\danika-perkinson-ZewANFM92iA-unsplash %281%29.jpg" />
+    <Content Include="Public\assets\img\other\dark-yellow-labrador-retriever-lying-on-the-sea-shore-928447.jpg" />
+    <Content Include="Public\assets\img\other\dorothea-oldani-920dzpjxHgw-unsplash.jpg" />
+    <Content Include="Public\assets\img\other\gray-tabby-cat-lying-on-white-string-lights-923360.jpg" />
+    <Content Include="Public\assets\img\other\lucrezia-carnelos-zCMAEsw6uRM-unsplash.jpg" />
+    <Content Include="Public\assets\img\other\orange-and-white-cats-lying-on-brown-sofa-3490871.jpg" />
+    <Content Include="Public\assets\img\other\pexels-dids-1383752.jpg" />
+    <Content Include="Public\assets\img\other\samia-liamani-9lVdutKM9vg-unsplash.jpg" />
+    <Content Include="Public\assets\img\other\sheri-hooley-KUm8K3EOaoE-unsplash.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\about-header.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\adopt-header.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\blog-header.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\contact-header.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\login-header.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\services-header.jpg" />
+    <Content Include="Public\assets\img\pages-header-image\shop-header.jpg" />
+    <Content Include="Public\assets\img\product\bed1.jpg" />
+    <Content Include="Public\assets\img\product\bed2.jpg" />
+    <Content Include="Public\assets\img\product\bed3.jpg" />
+    <Content Include="Public\assets\img\product\bed4.jpg" />
+    <Content Include="Public\assets\img\product\cat_PNG50534.png" />
+    <Content Include="Public\assets\img\product\Clothes\H041334fc215c4eceb6c4437fa840da050.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\Clothes\H224f297da0744328a80c51491a0c2bf9W.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\Clothes\H30682d90e33345bd9ede2ae6c073f842v.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\Clothes\H4612cfdb33b24e4f875c313d6d623974C.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\Clothes\H51ba501188a04a13b9fe242b552e27aaR.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\Clothes\Hca3bc24357534c40a80cfc9981842a46n.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\Clothes\Hd5288085d20d45f4b728e293ead58f1am.jpg_50x50.jpg" />
+    <Content Include="Public\assets\img\product\dog_PNG50392.png" />
+    <Content Include="Public\assets\img\service-info\wellness-care.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-1015480818-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-1142169775-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-467654452-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-471832315-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-483225474-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-511203850-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\istockphoto-696001860-612x612.jpg" />
+    <Content Include="Public\assets\img\sevices\pexels-burst-374825 %281%29.jpg" />
+    <Content Include="Public\assets\img\sevices\pexels-freestocksorg-165227.jpg" />
+    <Content Include="Public\assets\img\sevices\pexels-la-miko-3671235 %282%29.jpg" />
+    <Content Include="Public\assets\img\sevices\pexels-marko-blazevic-774731.jpg" />
+    <Content Include="Public\assets\img\shop\toys\images %281%29.jpg" />
+    <Content Include="Public\assets\img\subscribe\cat-with-black-background_3522-194.jpg" />
+    <Content Include="Public\assets\img\subscribe\photo-of-gray-and-white-tabby-kitten-sitting-on-sofa-2194261 %281%29.jpg" />
+    <Content Include="Public\assets\img\team\closeup-photo-of-smiling-woman-wearing-blue-denim-jacket-1130626.jpg" />
+    <Content Include="Public\assets\img\team\man-in-white-shirt-709188.jpg" />
+    <Content Include="Public\assets\img\team\man-standing-near-building-white-black-turtleneck-shirt-874158.jpg" />
+    <Content Include="Public\assets\img\team\portrait-photo-of-woman-718978.jpg" />
+    <Content Include="Public\assets\img\team\smiling-woman-with-red-hair-1987301.jpg" />
+    <Content Include="Public\assets\img\team\woman-wearing-sunhat-1382731 %281%29.jpg" />
+    <Content Include="Public\assets\img\testimonial\testimonial1.png" />
+    <Content Include="Public\assets\img\testimonial\testimonial2.png" />
+    <Content Include="Public\assets\img\testimonial\testimonial3.jpg" />
+    <Content Include="Public\assets\img\testimonial\white-and-gray-australian-shepherd-puppy-sitting-on-grass-1346086.jpg" />
+    <Content Include="Public\assets\js\counter\doc.html" />
+    <Content Include="Public\assets\js\counter\index.html" />
+    <Content Include="Public\assets\js\counter\js\counter.js" />
+    <Content Include="Public\assets\js\counter\js\counter.min.js" />
+    <Content Include="Public\assets\js\counter\js\jquery.easing.js" />
+    <Content Include="Public\assets\js\counter\js\jquery.min.js" />
+    <Content Include="Public\assets\js\counter\spec\javascripts\counter_spec.js" />
+    <Content Include="Public\assets\js\counter\spec\javascripts\helpers\spec_helper.js" />
+    <Content Include="Public\assets\js\productScript.js" />
+    <Content Include="Public\assets\js\script.js" />
+    <Content Include="Public\assets\js\subscribe.js" />
+    <Content Include="Public\assets\lightbox2\.gitignore" />
+    <Content Include="Public\assets\lightbox2\dist\css\lightbox.css" />
+    <Content Include="Public\assets\lightbox2\dist\css\lightbox.min.css" />
+    <Content Include="Public\assets\lightbox2\dist\images\close.png" />
+    <Content Include="Public\assets\lightbox2\dist\images\loading.gif" />
+    <Content Include="Public\assets\lightbox2\dist\images\next.png" />
+    <Content Include="Public\assets\lightbox2\dist\images\prev.png" />
+    <Content Include="Public\assets\lightbox2\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Public\assets\lightbox2\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Public\assets\lightbox2\dist\js\lightbox.js" />
+    <Content Include="Public\assets\lightbox2\dist\js\lightbox.min.js" />
+    <Content Include="Public\assets\lightbox2\examples\index.html" />
+    <Content Include="Public\assets\lightbox2\Gruntfile.js" />
+    <Content Include="Public\assets\lightbox2\src\css\lightbox.css" />
+    <Content Include="Public\assets\lightbox2\src\images\close.png" />
+    <Content Include="Public\assets\lightbox2\src\images\loading.gif" />
+    <Content Include="Public\assets\lightbox2\src\images\next.png" />
+    <Content Include="Public\assets\lightbox2\src\images\prev.png" />
+    <Content Include="Public\assets\lightbox2\src\js\lightbox.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\.gitattributes" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\.gitignore" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\ajax-loader.gif" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.carousel.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.theme.default.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.theme.green.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.theme.green.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\assets\owl.video.play.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\owl.carousel.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\owl.carousel.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\css\animate.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\css\docs.theme.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\bird_blue_32.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\download.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\feature-drag.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\feature-modern.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\feature-module.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\feature-options.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\feature-responsive.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\feature-zombie.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\owl-logo.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\img\twitter_25.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\js\app.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\js\foundation.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\ajax-loader.gif" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\assets\owl.video.play.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\owl.carousel.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\owl.carousel.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\vendors\foundation.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\vendors\highlight.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\vendors\jquery.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\vendors\jquery.mousewheel.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\animate.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\autoheight.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\autoplay.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\autowidth.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\basic.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\center.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\demos.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\events.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\lazyLoad.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\merge.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\mousewheel.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\responsive.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\rtl.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\stagepadding.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\test.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\urlhashnav.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\demos\video.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\api-classes.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\api-events.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\api-options.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\dev-buildin-plugins.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\dev-external.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\dev-plugin-api.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\dev-styles.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\started-faq.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\started-installation.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\started-welcome.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\support-changelog.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\support-contact.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\docs\support-contributing.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\index.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\css\animate.css" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\bird_blue_32.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\download.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\feature-drag.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\feature-modern.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\feature-module.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\feature-options.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\feature-responsive.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\feature-zombie.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\owl-logo.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\img\twitter_25.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\js\app.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\js\foundation.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\vendors\foundation.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\vendors\highlight.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\vendors\jquery.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\vendors\jquery.mousewheel.min.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\helpers\modulo.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\helpers\test.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\Gruntfile.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\img\ajax-loader.gif" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\img\owl.video.play.png" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.animate.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.autoheight.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.autoplay.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.autorefresh.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.carousel.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.hash.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.lazyload.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.navigation.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.support.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.support.modernizr.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\owl.video.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\test\index.html" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\test\unit\autoplay.js" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\test\unit\core.js" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\.gitattributes" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\.gitignore" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\css\smoothproducts.css" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\1.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\1_tb.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\2.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\2_tb.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\3.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\3_tb.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\4.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\4_tb.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\5.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\5_tb.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\6.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\6_tb.jpg" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\images\sp-loading.gif" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\index.html" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\js\jquery-2.1.3.min.js" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\js\smoothproducts.js" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\js\smoothproducts.min.js" />
+    <Content Include="Uploads\070920201603469841bed1.jpg" />
+    <Content Include="Uploads\070920201603469991bed2.jpg" />
+    <Content Include="Uploads\070920201603473884bed3.jpg" />
+    <Content Include="Uploads\070920201603474054bed4.jpg" />
+    <Content Include="Uploads\070920201604508329bed2.jpg" />
+    <Content Include="Uploads\070920201604509259bed3.jpg" />
+    <Content Include="Uploads\07092020193737942shop-header.jpg" />
+    <Content Include="Uploads\07092020200635879shop-header.jpg" />
+    <Content Include="Uploads\070920202249463163bed1.jpg" />
+    <Content Include="Uploads\070920202249464032bed3.jpg" />
+    <Content Include="Uploads\08092020005323174shop-header.jpg" />
+    <Content Include="Uploads\09092020063412667contact-header.jpg" />
+    <Content Include="Uploads\110920200248508427blog-header.jpg" />
+    <Content Include="Uploads\110920200248508627contact-header.jpg" />
+    <Content Include="Uploads\16082020030325992img14.jpg" />
+    <Content Include="Uploads\16082020031238226img02.jpg" />
+    <Content Include="Uploads\16092020015656200logo-header.png" />
+    <Content Include="Uploads\16092020015656203logo-footer.png" />
+    <Content Include="Uploads\16092020030907785header-slide1.jpg" />
+    <Content Include="Uploads\16092020030939808header-slide2.jpg" />
+    <Content Include="Uploads\16092020031009995header-slide3.jpg" />
+    <Content Include="Uploads\17082020181615808img06.jpg" />
+    <Content Include="Uploads\17082020181740783img07.jpg" />
+    <Content Include="Uploads\180920201536557378adoption1.jpg" />
+    <Content Include="Uploads\180920201536557698adoptionsingle1.jpg" />
+    <Content Include="Uploads\180920201536557818adoptionsingle2.jpg" />
+    <Content Include="Uploads\180920201633283967adoption2.jpg" />
+    <Content Include="Uploads\180920201635131375adoption3.jpg" />
+    <Content Include="Uploads\180920201637255131adoption4.jpg" />
+    <Content Include="Uploads\180920201639430626adoption5.jpg" />
+    <Content Include="Uploads\180920201645546010adoption6.jpg" />
+    <Content Include="Uploads\180920201647320146adoption8.jpg" />
+    <Content Include="Uploads\180920201648343473adoption7.jpg" />
+    <Content Include="Uploads\18092020214952501blog1.jpg" />
+    <Content Include="Uploads\18092020215208171services-header.jpg" />
+    <Content Include="Uploads\18092020215303715shop-header.jpg" />
+    <Content Include="Uploads\18092020215316199adopt-header.jpg" />
+    <Content Include="Uploads\18092020215352381services-header.jpg" />
+    <Content Include="Uploads\18092020215433626shop-header.jpg" />
+    <Content Include="Uploads\18092020215746659818a7cee-d0d8-4ad7-b5d4-0be6aedd7f0a.jpg" />
+    <Content Include="Uploads\18092020220300523header-slide2.jpg" />
+    <Content Include="Uploads\18092020220437631blog5.jpg" />
+    <Content Include="Uploads\18092020221124349pexels-photo-948873.jpeg" />
+    <Content Include="Uploads\18092020221419833about-header.jpg" />
+    <Content Include="Uploads\18092020221431486blog-header.jpg" />
+    <Content Include="Uploads\18092020222308463adopt-header.jpg" />
+    <Content Include="Uploads\18092020222348675adopt-header.jpg" />
+    <Content Include="Uploads\18092020224112031login-header.jpg" />
+    <Content Include="Uploads\19082020015134305img05.jpg" />
+    <Content Include="Uploads\19082020022237741img05.jpg" />
+    <Content Include="Uploads\19082020022437389img10.jpg" />
+    <Content Include="Uploads\19082020050506934img02.jpg" />
+    <Content Include="Uploads\19082020050628352img02.jpg" />
+    <Content Include="Uploads\19082020051435748img06.jpg" />
+    <Content Include="Uploads\19082020051843470img06.jpg" />
+    <Content Include="Uploads\19082020052223090img06.jpg" />
+    <Content Include="Uploads\19082020052723951img04.jpg" />
+    <Content Include="Uploads\19082020053007808img06.jpg" />
+    <Content Include="Uploads\19082020053556958img05.jpg" />
+    <Content Include="Uploads\19082020054804290img02.jpg" />
+    <Content Include="Uploads\19082020055122731img04.jpg" />
+    <Content Include="Uploads\19082020055633693img04.jpg" />
+    <Content Include="Uploads\19082020055649074img06.jpg" />
+    <Content Include="Uploads\19082020060100472img06.jpg" />
+    <Content Include="Uploads\19082020060136634img05.jpg" />
+    <Content Include="Uploads\19082020060236377img07.jpg" />
+    <Content Include="Uploads\19082020060300312img07.jpg" />
+    <Content Include="Uploads\19082020061404274img07.jpg" />
+    <Content Include="Uploads\19082020225316206img12.jpg" />
+    <Content Include="Uploads\19092020004305244blog6.jpg" />
+    <Content Include="Uploads\19092020005252529wellness-care.jpg" />
+    <Content Include="Uploads\19092020014041948pexels-la-miko-3671235 %282%29.jpg" />
+    <Content Include="Uploads\19092020020218190istockphoto-511203850-612x612.jpg" />
+    <Content Include="Uploads\19092020022401328istockphoto-1015480818-612x612.jpg" />
+    <Content Include="Uploads\19092020022750325pexels-burst-374825 %281%29.jpg" />
+    <Content Include="Uploads\19092020023233853pexels-freestocksorg-165227.jpg" />
+    <Content Include="Uploads\19092020024014501istockphoto-467654452-612x612.jpg" />
+    <Content Include="Uploads\21082020182000638img20.jpg" />
+    <Content Include="Uploads\23082020181034780img04.jpg" />
+    <Content Include="Uploads\23082020181035474img04.jpg" />
+    <Content Include="Uploads\23082020181248291img04.jpg" />
+    <Content Include="Uploads\23082020181719137img07.jpg" />
+    <Content Include="Uploads\23082020195622022img05.jpg" />
+    <Content Include="Uploads\23082020195825125img07.jpg" />
+    <Content Include="Uploads\23082020195922533img05.jpg" />
+    <Content Include="Uploads\23082020200008272img06.jpg" />
+    <Content Include="Uploads\23082020200220029img05.jpg" />
+    <Content Include="Uploads\23082020200644768img07.jpg" />
+    <Content Include="Uploads\23082020201814554img17.jpg" />
+    <Content Include="Uploads\260820200125319626img12.jpg" />
+    <Content Include="Uploads\260820200220320544img05.jpg" />
+    <Content Include="Uploads\260820200220320774img06.jpg" />
+    <Content Include="Uploads\260820201700370530img06.jpg" />
+    <Content Include="Uploads\260820201724578414img06.jpg" />
+    <Content Include="Uploads\260820201724578694img07.jpg" />
+    <Content Include="Uploads\260820202026276116img05.jpg" />
+    <Content Include="Uploads\260820202026276416img07.jpg" />
+    <Content Include="Uploads\31082020183815781contact-header.jpg" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Public\assets\img\article\" />
+    <Folder Include="Public\assets\img\shop\bed\" />
+    <Folder Include="Public\assets\img\shop\care\" />
+    <Folder Include="Public\assets\img\shop\food\" />
+    <Folder Include="Public\assets\img\shop\sebet\" />
+    <Folder Include="Public\assets\lightbox2\.git\objects\info\" />
+    <Folder Include="Public\assets\lightbox2\.git\refs\tags\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Public\plugins\dropify\fonts\dropify.eot" />
+    <Content Include="Areas\Admin\Public\plugins\dropify\fonts\dropify.ttf" />
+    <Content Include="Areas\Admin\Public\plugins\dropify\fonts\dropify.woff" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Areas\Admin\Public\plugins\font-icons\fontawesome\webfonts\fa-regular-400d41d.eot" />
+    <Content Include="Areas\Admin\Views\Admins\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admins\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\AdoptSocial\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdoptSocial\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdoptSocial\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Adopt\AdoptRule.cshtml" />
+    <Content Include="Areas\Admin\Views\Adopt\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Adopt\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Adopt\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Adopt\RuleUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\Adopt\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\AgeType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AgeType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AgeType\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Appointment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogCategory\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Gender\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Gender\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Gender\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\HeaderImage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HeaderImage\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HeaderImage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HeaderImage\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSlider\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSlider\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSlider\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSlider\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSocial\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSocial\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeSocial\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Profil.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Subscribe.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\PetSize\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PetSize\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PetSize\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\PetType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PetType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PetType\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Sale\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sale\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\SocialType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SocialType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SocialType\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSocial\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSocial\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSocial\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Public\assets\datetimepicker-master\.travis.yml" />
+    <Content Include="Public\assets\datetimepicker-master\bower.json" />
+    <Content Include="Public\assets\datetimepicker-master\datetimepicker.jquery.json" />
+    <Content Include="Public\assets\datetimepicker-master\doc.tpl" />
+    <Content Include="Public\assets\datetimepicker-master\package-lock.json" />
+    <Content Include="Public\assets\datetimepicker-master\package.json" />
+    <Content Include="Public\assets\datetimepicker-master\pull_request_template.md" />
+    <Content Include="Public\assets\datetimepicker-master\README.md" />
+    <Content Include="Public\assets\js\counter\.travis.yml" />
+    <Content Include="Public\assets\js\counter\bower.json" />
+    <Content Include="Public\assets\js\counter\Gemfile" />
+    <Content Include="Public\assets\js\counter\Gemfile.lock" />
+    <Content Include="Public\assets\js\counter\js\counter.coffee" />
+    <Content Include="Public\assets\js\counter\LICENSE" />
+    <Content Include="Public\assets\js\counter\Makefile" />
+    <Content Include="Public\assets\js\counter\Rakefile" />
+    <Content Include="Public\assets\js\counter\README.md" />
+    <Content Include="Public\assets\js\counter\spec\javascripts\support\jasmine.yml" />
+    <Content Include="Public\assets\js\counter\spec\javascripts\support\jasmine_helper.rb" />
+    <Content Include="Public\assets\lightbox2\.editorconfig" />
+    <Content Include="Public\assets\lightbox2\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Public\assets\lightbox2\.github\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Public\assets\lightbox2\.git\config" />
+    <Content Include="Public\assets\lightbox2\.git\description" />
+    <Content Include="Public\assets\lightbox2\.git\HEAD" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\applypatch-msg.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\commit-msg.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\fsmonitor-watchman.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\post-update.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\pre-applypatch.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\pre-commit.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\pre-merge-commit.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\pre-push.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\pre-rebase.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\pre-receive.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\prepare-commit-msg.sample" />
+    <Content Include="Public\assets\lightbox2\.git\hooks\update.sample" />
+    <Content Include="Public\assets\lightbox2\.git\index" />
+    <Content Include="Public\assets\lightbox2\.git\info\exclude" />
+    <Content Include="Public\assets\lightbox2\.git\logs\HEAD" />
+    <Content Include="Public\assets\lightbox2\.git\logs\refs\heads\dev" />
+    <Content Include="Public\assets\lightbox2\.git\logs\refs\remotes\origin\HEAD" />
+    <Content Include="Public\assets\lightbox2\.git\objects\pack\pack-00b6fa3f693f2c1d49b009be863ed7d4933b0757.idx" />
+    <Content Include="Public\assets\lightbox2\.git\objects\pack\pack-00b6fa3f693f2c1d49b009be863ed7d4933b0757.pack" />
+    <Content Include="Public\assets\lightbox2\.git\packed-refs" />
+    <Content Include="Public\assets\lightbox2\.git\refs\heads\dev" />
+    <Content Include="Public\assets\lightbox2\.git\refs\remotes\origin\HEAD" />
+    <Content Include="Public\assets\lightbox2\.jscsrc" />
+    <Content Include="Public\assets\lightbox2\.jshintrc" />
+    <Content Include="Public\assets\lightbox2\bower.json" />
+    <Content Include="Public\assets\lightbox2\DEPLOY.md" />
+    <Content Include="Public\assets\lightbox2\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Public\assets\lightbox2\dist\js\lightbox.min.map" />
+    <Content Include="Public\assets\lightbox2\LICENSE" />
+    <Content Include="Public\assets\lightbox2\package.json" />
+    <Content Include="Public\assets\lightbox2\README.md" />
+    <Content Include="Public\assets\lightbox2\ROADMAP.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\.travis.yml" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\bower.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\CONTRIBUTING.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\LICENSE" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\dist\README.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\owlcarousel\README.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs\assets\vendors\jquery.min.map" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\scss\custom.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\scss\demos.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\scss\docs.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\scss\docs.theme.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\scss\highlight.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\scss\_settings.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\assets\vendors\jquery.min.map" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\data\classes.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\data\events.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\data\features.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\data\options.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\layouts\demos.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\layouts\docs.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\layouts\home.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\animate.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\autoheight.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\autoplay.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\autowidth.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\basic.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\center.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\demos.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\events.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\lazyLoad.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\merge.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\mousewheel.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\responsive.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\rtl.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\stagepadding.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\test.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\urlhashnav.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\demos\video.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\api-classes.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\api-events.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\api-options.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\dev-buildin-plugins.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\dev-external.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\dev-plugin-api.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\dev-styles.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\started-faq.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\started-installation.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\started-welcome.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\support-changelog.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\support-contact.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\docs\support-contributing.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\pages\index.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\footer.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\head.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\header.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\home-carousel.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\home-features.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\home-hero.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\home-teaser-text.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\javascripts.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\releated-docs.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\sidenav-docs.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\title.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\docs_src\templates\partials\vendors.hbs" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\ISSUE_TEMPLATE.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\LICENSE" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\package-lock.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\package.json" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\README.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\ROADMAP.md" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\.jscsrc" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\js\.jshintrc" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\owl.carousel.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\owl.theme.default.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\owl.theme.green.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_animate.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_autoheight.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_core.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_lazyload.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_theme.default.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_theme.green.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_theme.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\src\scss\_video.scss" />
+    <Content Include="Public\assets\OwlCarousel2-2.3.4\_config.json" />
+    <Content Include="Public\assets\Simple-Responsive-jQuery-Image-Viewer-Plugin-Smooth-Products\README.md" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Adopt\AdoptDetails.cshtml" />
+    <Content Include="Views\Adopt\Index.cshtml" />
+    <Content Include="Views\Blog\BlogDetails.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Service\ServiceDetails.cshtml" />
+    <Content Include="Views\Shared\_AdoptPartial.cshtml" />
+    <Content Include="Views\Shared\_ArticlePartial.cshtml" />
+    <Content Include="Views\Shared\_BlogPartial.cshtml" />
+    <Content Include="Views\Shared\_HeaderImagePartial.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_ProductPartial.cshtml" />
+    <Content Include="Views\Shared\_ServicePartial.cshtml" />
+    <Content Include="Views\Shared\_SubscribePartial.cshtml" />
+    <Content Include="Views\Shopping\Index.cshtml" />
+    <Content Include="Views\Shop\Checkout.cshtml" />
+    <Content Include="Views\Shop\Proceed.cshtml" />
+    <Content Include="Views\Shop\ProductDetails.cshtml" />
+    <Content Include="Views\Shop\WishList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009191427367_init.resx">
+      <DependentUpon>202009191427367_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009191938157_iconblog.resx">
+      <DependentUpon>202009191938157_iconblog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009192005046_pettype.resx">
+      <DependentUpon>202009192005046_pettype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009192009050_type.resx">
+      <DependentUpon>202009192009050_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009192224407_blobigimage.resx">
+      <DependentUpon>202009192224407_blobigimage.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50486</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50486/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

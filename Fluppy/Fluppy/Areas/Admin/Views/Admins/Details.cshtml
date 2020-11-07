@@ -1,0 +1,74 @@
+﻿@model Fluppy.Models.Admins
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="ml-4 mt-2">
+        <h4>Admin</h4>
+
+        <h2 style="font-weight:bold;">Details</h2>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dd>
+                <img src="~/Uploads/@Model.Image" alt="@Model.Image" width="100" /><br />
+
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MainAdmin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MainAdmin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+
+        </dl>
+        <p>
+            <a href="@Url.Action("Update", "Admins", new { id = Model.Id })" class="btn btn-info  mb-2">Update</a>
+
+            <a href="@Url.Action("Index", "Admins")" class="btn btn-danger  mb-2 ml-2">Back To List</a>
+        </p>
+    </div>

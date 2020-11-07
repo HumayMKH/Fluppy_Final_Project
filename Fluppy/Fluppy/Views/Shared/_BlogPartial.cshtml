@@ -1,0 +1,29 @@
+﻿@model List<Fluppy.Models.Blog>
+
+@foreach (var item in Model)
+{
+    <div class="blog-area-content pb-4">
+        <div class="row">
+            <div class="blog-content" style="width:100%;">
+                <div class="row">
+                    <div class="col-12 col-sm-3 blog-img">
+                            <img src="~/Uploads/@item.Image" alt="blog-image">
+                    </div>
+                    <div class="col-12 col-sm-9 blog-content-text">
+                        <div class="blog-info">
+                            <span>@item.Date.DayOfWeek</span>
+                            <br />
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                        </div>
+                            <h3 class="blog-title">@item.Title</h3>
+                        <p class="blog-text">
+                           @(item.Content.Length>100?item.Content.Substring(0,150)+"...":item.Content)
+                        </p>
+                        <a href="@Url.Action("BlogDetails","Blog",new { Id=item.Id})" class="blog-btn">Read more</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

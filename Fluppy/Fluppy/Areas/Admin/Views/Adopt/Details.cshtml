@@ -1,0 +1,109 @@
+﻿@model Fluppy.Models.Adopt
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="ml-4 mt-2">
+        <h4>Adopt</h4>
+
+        <h2 style="font-weight:bold;">Details</h2>  
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Neutered)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Neutered)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Breed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Breed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Vaccinated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vaccinated)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PetSize.Size)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PetSize.Size)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AgeType.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AgeType.Name)
+            </dd>
+             <dt>
+            Images
+            </dt>
+            
+            <dd>
+                @foreach (var item in Model.SlideAdopts)
+                {
+                    <img src="~/Uploads/@item.Image" alt="@item.Image" width="100" />
+                }
+            </dd>
+        </dl>
+        <p>
+            <a href="@Url.Action("Update", "Adopt", new { id = Model.Id })" class="btn btn-info  mb-2">Update</a>
+
+            <a href="@Url.Action("Index", "Adopt")" class="btn btn-danger  mb-2 ml-2">Back To List</a>
+        </p>
+    </div>
